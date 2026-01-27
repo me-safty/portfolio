@@ -1,11 +1,65 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { Hero } from '../components/Hero';
+import { SocialLinks } from '../components/SocialLinks';
+import { GitHubActivity } from '../components/GitHubActivity';
+import { Experiences } from '../components/Experiences';
+import { Projects } from '../components/Projects';
+import { Skills } from '../components/Skills';
+import { Testimonials } from '../components/Testimonials';
+import { ContactCTA } from '../components/ContactCTA';
+import { ScrollToTop } from '../components/ScrollToTop';
+import { Section, SectionHeader } from '../components/Section';
+import portfolioData from '../data/portfolio.json';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const { profile, socials, experiences, projects, skills, testimonials, quote, github } = portfolioData;
 ---
 
-<Layout>
-	<Welcome />
+<Layout title={`${profile.name} - Portfolio`} description={profile.bio.split('\n')[0]}>
+  <main class="max-w-4xl mx-auto py-8 px-4 md:px-8">
+    <!-- Hero Section -->
+    <div class="mb-0">
+      <Hero profile={profile} client:load />
+      <div class="dashed-border-section border-t-0">
+        <SocialLinks socials={socials} client:load />
+      </div>
+    </div>
+
+    <!-- GitHub Activity -->
+    <Section className="border-t-0">
+      <GitHubActivity username={github.username} client:load />
+    </Section>
+
+    <!-- Experiences -->
+    <Section className="border-t-0">
+      <SectionHeader title="Experiences" />
+      <Experiences experiences={experiences} client:load />
+    </Section>
+
+    <!-- Projects -->
+    <Section className="border-t-0">
+      <SectionHeader title="Projects" />
+      <Projects projects={projects} client:load />
+    </Section>
+
+    <!-- Skills -->
+    <Section className="border-t-0">
+      <SectionHeader title="Skills & Technologies" />
+      <Skills skills={skills} client:load />
+    </Section>
+
+    <!-- Testimonials -->
+    <Section className="border-t-0">
+      <SectionHeader title="What People Say" />
+      <Testimonials testimonials={testimonials} client:load />
+    </Section>
+
+    <!-- Contact CTA & Quote -->
+    <Section className="border-t-0" noBorder>
+      <ContactCTA email={profile.email} quote={quote} client:load />
+    </Section>
+
+    <!-- Scroll to top -->
+    <ScrollToTop client:load />
+  </main>
 </Layout>

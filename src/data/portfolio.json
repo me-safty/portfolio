@@ -1,0 +1,197 @@
+{
+  "profile": {
+    "name": "Mohamed Safty¢",
+    "titles": [
+      "Top Rated Freelancer",
+      "Full Stack Engineer",
+      "Software Engineer"
+    ],
+    "avatar": "/image.jpeg",
+    "bio": "Hey, I'm a full stack developer who loves building clean, modern websites and apps where design, functionality, and even the smallest details matter, with a focus on making products that are both practical and visually satisfying.\n\nTech stack isn't my concern, I'm flexible with whatever the project needs, though I prefer modern frameworks and tools. I'm always open for new opportunities to learn and grow.",
+    "email": "hello@example.com",
+    "calendarLink": "https://cal.com/username"
+  },
+  "socials": [
+    { "name": "GitHub", "url": "https://github.com/safty", "icon": "github" },
+    {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/in/username",
+      "icon": "linkedin"
+    },
+    {
+      "name": "Upwork",
+      "url": "https://upwork.com/freelancers/username",
+      "icon": "upwork"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/username",
+      "icon": "twitter"
+    },
+    {
+      "name": "Medium",
+      "url": "https://medium.com/@username",
+      "icon": "medium"
+    }
+  ],
+  "experiences": [
+    {
+      "id": "exp-1",
+      "company": "Tech Company",
+      "logo": "/logos/company.png",
+      "role": "Software Engineer",
+      "type": "Full Time",
+      "startDate": "Aug, 2025",
+      "endDate": "Present",
+      "location": "Remote",
+      "description": [
+        "Owned the core presentation editor, driving major performance and reliability improvements",
+        "Designed and built core editor features like drag-and-drop, resize, and keyboard shortcuts end-to-end",
+        "Owned a foundational refactor, strengthening a critical codebase to enable safer and faster production",
+        "Drove major Drive page performance improvements, resolving bugs to deliver faster, reliable experiences"
+      ],
+      "technologies": [
+        "Next",
+        "Tailwind",
+        "TypeScript",
+        "JavaScript",
+        "Express",
+        "PostgreSQL",
+        "Docker"
+      ]
+    },
+    {
+      "id": "exp-2",
+      "company": "Open Source Project",
+      "logo": "/logos/opensource.png",
+      "role": "Full Stack Developer",
+      "type": "Contributor",
+      "startDate": "May, 2025",
+      "endDate": "Nov, 2025",
+      "location": "Remote",
+      "description": [
+        "Contributed to core features and bug fixes",
+        "Collaborated with maintainers on code reviews"
+      ],
+      "technologies": ["React", "Node.js", "MongoDB"]
+    },
+    {
+      "id": "exp-3",
+      "company": "Freelance",
+      "logo": "/logos/freelance.png",
+      "role": "Freelance Developer",
+      "type": "Self-employed",
+      "startDate": "Jan, 2024",
+      "endDate": "Present",
+      "location": "Remote",
+      "description": [
+        "Built custom web applications for various clients",
+        "Delivered projects on time with high client satisfaction"
+      ],
+      "technologies": ["React", "Next.js", "Tailwind", "Node.js"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-1",
+      "name": "Project Alpha",
+      "image": "/projects/alpha.png",
+      "label": "Featured",
+      "description": "A social platform where developers share projects, ideas, and grow together.",
+      "status": "Live",
+      "url": "https://project-alpha.com",
+      "featured": true
+    },
+    {
+      "id": "proj-2",
+      "name": "Project Beta",
+      "image": "/projects/beta.png",
+      "label": "Home Feed",
+      "description": "Record studio-quality remote audio and video, locally captured without quality loss.",
+      "status": "Building",
+      "url": "https://project-beta.com",
+      "featured": true
+    },
+    {
+      "id": "proj-3",
+      "name": "Project Gamma",
+      "image": "/projects/gamma.png",
+      "label": "News Screen",
+      "description": "A news website presenting cases through a clean, newspaper-style interface.",
+      "status": "Live",
+      "url": "https://project-gamma.com",
+      "featured": false
+    },
+    {
+      "id": "proj-4",
+      "name": "Project Delta",
+      "image": "/projects/delta.png",
+      "label": "Coming Soon",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, itaque.",
+      "status": "Building",
+      "url": "#",
+      "featured": false
+    }
+  ],
+  "skills": [
+    { "name": "React", "icon": "react" },
+    { "name": "Next", "icon": "nextjs" },
+    { "name": "Expo", "icon": "expo" },
+    { "name": "Django", "icon": "django" },
+    { "name": "Express", "icon": "express" },
+    { "name": "Node", "icon": "nodejs" },
+    { "name": "Bun", "icon": "bun" },
+    { "name": "PostgreSQL", "icon": "postgresql" },
+    { "name": "MongoDB", "icon": "mongodb" },
+    { "name": "Redis", "icon": "redis" },
+    { "name": "Prisma", "icon": "prisma" },
+    { "name": "Zustand", "icon": "zustand" },
+    { "name": "Tanstack Query", "icon": "tanstack" },
+    { "name": "Postman", "icon": "postman" },
+    { "name": "Tailwind", "icon": "tailwind" },
+    { "name": "shadcn", "icon": "shadcn" },
+    { "name": "Motion", "icon": "framer" },
+    { "name": "GSAP", "icon": "gsap" },
+    { "name": "JavaScript", "icon": "javascript" },
+    { "name": "TypeScript", "icon": "typescript" },
+    { "name": "Java", "icon": "java" },
+    { "name": "Python", "icon": "python" },
+    { "name": "C/C++", "icon": "cpp" },
+    { "name": "SQL", "icon": "sql" },
+    { "name": "Git", "icon": "git" },
+    { "name": "GitHub", "icon": "github" },
+    { "name": "Figma", "icon": "figma" },
+    { "name": "Docker", "icon": "docker" },
+    { "name": "Linux", "icon": "linux" }
+  ],
+  "testimonials": [
+    {
+      "id": "test-1",
+      "text": "Working with them was an absolute pleasure. They delivered high-quality work on time and exceeded our expectations. Highly recommended for any development project!",
+      "author": "John Doe",
+      "role": "CTO at TechCorp",
+      "avatar": "/testimonials/john.jpg"
+    },
+    {
+      "id": "test-2",
+      "text": "Exceptional developer with great communication skills. They understood our requirements perfectly and delivered a stunning product.",
+      "author": "Jane Smith",
+      "role": "Product Manager at StartupXYZ",
+      "avatar": "/testimonials/jane.jpg"
+    },
+    {
+      "id": "test-3",
+      "text": "Professional, skilled, and dedicated. They went above and beyond to ensure our project was successful. Would definitely work with them again!",
+      "author": "Mike Johnson",
+      "role": "Founder at AppStudio",
+      "avatar": "/testimonials/mike.jpg"
+    }
+  ],
+  "quote": {
+    "text": "Do so much work that it would be unreasonable for you to not be successful.",
+    "author": "Alex Hormozi"
+  },
+  "github": {
+    "username": "me-safty"
+  }
+}
