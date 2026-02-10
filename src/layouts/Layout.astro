@@ -23,6 +23,10 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
+    <!-- Fonts loaded via global.css -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Prevent flash of wrong theme -->
     <script is:inline>
       const theme = localStorage.getItem('theme');
@@ -33,6 +37,7 @@ const {
     </script>
   </head>
   <body class="min-h-screen">
+    <div class="grain-overlay" aria-hidden="true" />
     <slot />
   </body>
 </html>

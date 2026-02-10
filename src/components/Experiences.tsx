@@ -59,7 +59,7 @@ function ExperienceCard({
             {/* Info */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-2xl font-semibold leading-none">{experience.company}</span>
+                <span className="text-2xl font-display font-semibold leading-none">{experience.company}</span>
                 <Badge variant="outline" className="text-sm font-normal rounded-[8px] px-2 py-0.5">
                   {experience.type}
                 </Badge>

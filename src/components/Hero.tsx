@@ -45,7 +45,7 @@ export function Hero({ profile }: HeroProps) {
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
           {/* Avatar */}
           <div className="shrink-0">
-            <div className="size-24 rounded-xl overflow-hidden bg-muted border border-border shadow-sm">
+            <div className="size-24 sm:size-28 rounded-2xl overflow-hidden bg-muted border border-border shadow-md ring-1 ring-black/5 dark:ring-white/5">
               <img
                 src={profile.avatar}
                 alt={profile.name}
@@ -65,14 +65,14 @@ export function Hero({ profile }: HeroProps) {
 
           {/* Info */}
           <div className="flex-1 min-w-0 flex flex-col justify-center h-full pt-1">
-            <h1 className="text-[2.15rem] sm:text-[2.35rem] font-bold tracking-tight leading-[1.15] mb-1">
+            <h1 className="text-[2.25rem] sm:text-[2.6rem] font-display font-bold tracking-tight leading-[1.12] mb-1.5">
               {profile.name}
             </h1>
 
             {/* Animated title */}
             <div className="h-6 overflow-hidden pr-12">
               <p
-                className={`text-muted-foreground font-medium text-base ${
+                className={`text-muted-foreground font-medium text-[1.02rem] ${
                   isAnimating ? "title-exit" : "title-enter"
                 }`}
               >
@@ -105,7 +105,7 @@ export function Hero({ profile }: HeroProps) {
 
       {/* Bio section */}
       <div className="dashed-border-section border-t-0 p-4 sm:p-5 md:p-6">
-        <div className="text-foreground/85 text-[1.02rem] leading-8 space-y-3 mb-5">
+        <div className="text-foreground/90 text-[1.02rem] leading-8 space-y-3 mb-5">
           {profile.bio.split("\n\n").map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}

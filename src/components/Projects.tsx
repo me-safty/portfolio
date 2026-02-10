@@ -20,7 +20,7 @@ function ProjectCard({ project }: { project: Project }) {
   const statusColor = project.status === "Live" ? "bg-emerald-500" : "bg-rose-500";
 
   return (
-    <article className="rounded-xl border border-border/95 bg-card p-2.5 sm:p-3">
+    <article className="card-hover rounded-xl border border-border/95 bg-card p-2.5 sm:p-3">
       <div className="mb-2.5 flex items-center justify-between">
         <span className="text-sm text-muted-foreground">{project.label}</span>
         {project.featured && (
@@ -65,7 +65,7 @@ function ProjectCard({ project }: { project: Project }) {
 
       <div className="px-0.5 pt-3">
         <div className="mb-1.5 flex items-center justify-between gap-4">
-          <h3 className="text-[1.85rem] sm:text-[2rem] font-semibold tracking-tight leading-none">{project.name}</h3>
+          <h3 className="text-[1.85rem] sm:text-[2rem] font-display font-semibold tracking-tight leading-none">{project.name}</h3>
           <div className="flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground">
             <span className={`size-2 rounded-full ${statusColor}`} />
             <span>{project.status}</span>

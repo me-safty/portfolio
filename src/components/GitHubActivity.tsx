@@ -166,10 +166,10 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
 
   const levelColors = [
     "bg-muted",
-    "bg-gray-300 dark:bg-gray-700",
-    "bg-gray-400 dark:bg-gray-500",
-    "bg-gray-500 dark:bg-gray-400",
-    "bg-gray-700 dark:bg-gray-200",
+    "bg-accent-warm/30 dark:bg-accent-warm/25",
+    "bg-accent-warm/50 dark:bg-accent-warm/40",
+    "bg-accent-warm/70 dark:bg-accent-warm/55",
+    "bg-accent-warm dark:bg-accent-warm/80",
   ];
 
   if (loading) {

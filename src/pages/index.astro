@@ -15,13 +15,14 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
 ---
 
 <Layout title={`${profile.name} - Portfolio`} description={profile.bio.split('\n')[0]}>
-  <main class="max-w-[760px] mx-auto py-8 px-4 md:px-6">
-    <section class="dashed-border-section h-56 border-b-0 p-4 sm:p-5">
-      <div class="dot-grid-panel size-full"></div>
+  <main class="max-w-[780px] mx-auto py-10 px-4 md:px-8 md:pl-10 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[3px] before:bg-accent-warm/40 before:rounded-r-full before:hidden md:before:block">
+    <!-- Hero banner with gradient mesh -->
+    <section class="hero-mesh dashed-border-section h-48 sm:h-56 border-b-0 p-4 sm:p-6 rounded-t-xl overflow-hidden">
+      <div class="dot-grid-panel size-full rounded-lg opacity-80" />
     </section>
 
     <!-- Hero Section -->
-    <div class="mb-0">
+    <div class="mb-0 opacity-0 animate-fade-up">
       <Hero profile={profile} client:load />
       <div class="dashed-border-section border-t-0">
         <SocialLinks socials={socials} client:load />
@@ -29,36 +30,36 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
     </div>
 
     <!-- GitHub Activity -->
-    <Section className="border-t-0">
+    <Section className="border-t-0 opacity-0 animate-fade-up animate-fade-up-delay-1">
       <GitHubActivity username={github.username} client:load />
     </Section>
 
     <!-- Experiences -->
-    <Section className="border-t-0">
+    <Section className="border-t-0 opacity-0 animate-fade-up animate-fade-up-delay-2">
       <SectionHeader title="Experiences" />
       <Experiences experiences={experiences} client:load />
     </Section>
 
     <!-- Projects -->
-    <Section className="border-t-0">
+    <Section className="border-t-0 opacity-0 animate-fade-up animate-fade-up-delay-3">
       <SectionHeader title="Projects" />
       <Projects projects={projects} client:load />
     </Section>
 
     <!-- Skills -->
-    <Section className="border-t-0">
+    <Section className="border-t-0 opacity-0 animate-fade-up animate-fade-up-delay-4">
       <SectionHeader title="Skills & Technologies" />
       <Skills skills={skills} client:load />
     </Section>
 
     <!-- Newsletter + Quote -->
-    <Section className="border-t-0">
+    <Section className="border-t-0 opacity-0 animate-fade-up animate-fade-up-delay-5">
       <SectionHeader title="Newsletter" />
       <ContactCTA email={profile.email} quote={quote} client:load />
     </Section>
 
-    <section class="dashed-border-section border-t-0 h-56 p-4 sm:p-5">
-      <div class="dot-grid-panel size-full"></div>
+    <section class="hero-mesh dashed-border-section border-t-0 h-48 sm:h-56 p-4 sm:p-6 rounded-b-xl overflow-hidden">
+      <div class="dot-grid-panel size-full rounded-lg opacity-80" />
     </section>
 
     <!-- Scroll to top -->

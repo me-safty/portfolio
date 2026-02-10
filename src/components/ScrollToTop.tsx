@@ -29,7 +29,7 @@ export function ScrollToTop() {
       variant="default"
       size="icon"
       onClick={scrollToTop}
-      className={`scroll-to-top ${isVisible ? "visible" : ""}`}
+      className={`scroll-to-top ${isVisible ? "visible" : ""} rounded-xl shadow-lg`}
       aria-label="Scroll to top"
     >
       <svg

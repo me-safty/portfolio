@@ -12,12 +12,12 @@ export function ContactCTA({ email, quote }: ContactCTAProps) {
   return (
     <div>
       {/* CTA Section */}
-      <div className="diagonal-lines-bg px-6 py-12 text-center border-b border-dashed border-border">
-        <h2 className="text-xl font-semibold mb-2">Let's work together</h2>
-        <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+      <div className="diagonal-lines-bg px-6 py-14 text-center border-b border-dashed border-border">
+        <h2 className="text-xl sm:text-2xl font-display font-semibold mb-2">Let's work together</h2>
+        <p className="text-muted-foreground mb-6 max-w-md mx-auto text-[1.02rem] leading-relaxed">
           I'm currently available for freelance work and new opportunities. Feel free to reach out!
         </p>
-        <Button asChild size="lg" className="gap-2">
+        <Button asChild size="lg" className="gap-2 bg-foreground text-background hover:bg-foreground/90">
           <a href={`mailto:${email}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,18 +51,18 @@ export function ContactCTA({ email, quote }: ContactCTAProps) {
 
         {/* Quote text */}
         <blockquote className="max-w-2xl mx-auto mb-6">
-          <p className="text-xl md:text-2xl font-medium italic leading-relaxed">
+          <p className="text-xl md:text-2xl font-medium italic leading-relaxed text-foreground/90">
             "{quote.text}"
           </p>
         </blockquote>
 
         {/* Author attribution */}
         <div className="flex items-center justify-center gap-4">
-          <div className="h-px w-8 bg-border" />
-          <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+          <div className="h-px w-12 bg-accent-warm/50" />
+          <span className="text-sm text-muted-foreground font-medium uppercase tracking-[0.15em]">
             {quote.author}
           </span>
-          <div className="h-px w-8 bg-border" />
+          <div className="h-px w-12 bg-accent-warm/50" />
         </div>
       </div>
     </div>
