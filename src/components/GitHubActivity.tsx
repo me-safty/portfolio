@@ -116,8 +116,6 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
   useEffect(() => {
     async function fetchContributions() {
       try {
-        // Try to fetch from GitHub's contribution calendar
-        // Since GitHub's GraphQL API requires auth, we'll use a public proxy or fallback to mock
         const response = await fetch(
           `https://github-contributions-api.jogruber.de/v4/${username}?y=last`
         );
@@ -162,19 +160,20 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
 
   const weeks = groupByWeeks(contributions);
   const monthLabels = getMonthLabels(weeks);
-  const columnStep = 13;
+  const columnStep = 14; // increased slightly
 
+  // Updated colors to match theme
   const levelColors = [
     "bg-muted",
-    "bg-gray-300 dark:bg-gray-700",
-    "bg-gray-400 dark:bg-gray-500",
-    "bg-gray-500 dark:bg-gray-400",
-    "bg-gray-700 dark:bg-gray-200",
+    "bg-primary/20",
+    "bg-primary/40",
+    "bg-primary/60",
+    "bg-primary",
   ];
 
   if (loading) {
     return (
-      <div className="px-4 sm:px-5 md:px-6 py-6">
+      <div className="py-6">
         <div className="animate-pulse">
           <div className="h-4 bg-muted rounded w-24 mb-4" />
           <div className="h-20 bg-muted rounded" />
@@ -184,15 +183,15 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
   }
 
   return (
-    <div className="px-4 sm:px-5 md:px-6 py-4">
+    <div className="py-4">
       {/* Month labels */}
-      <div className="overflow-x-auto">
-        <div className="min-w-[690px]">
-          <div className="relative h-4 mb-2">
+      <div className="overflow-x-auto pb-2 scrollbar-none">
+        <div className="min-w-[750px]">
+          <div className="relative h-6 mb-2">
             {monthLabels.map(({ month, index }) => (
               <span
                 key={`${month}-${index}`}
-                className="absolute text-sm text-muted-foreground"
+                className="absolute text-xs font-mono uppercase tracking-wider text-muted-foreground"
                 style={{
                   left: `${index * columnStep}px`,
                 }}
@@ -203,12 +202,12 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
           </div>
 
           {/* Contribution grid */}
-          <TooltipProvider delayDuration={60}>
-            <div className="flex gap-[3px]">
+          <TooltipProvider delayDuration={0}>
+            <div className="flex gap-[4px]">
               {weeks.map((week, weekIndex) => (
-                <div key={weekIndex} className="flex flex-col gap-[3px]">
+                <div key={weekIndex} className="flex flex-col gap-[4px]">
                   {week.map((day, dayIndex) => {
-                    const cellClass = `size-[10px] rounded-[2px] contribution-cell ${
+                    const cellClass = `size-[10px] sm:size-[11px] rounded-[1px] contribution-cell transition-all duration-300 hover:ring-1 hover:ring-ring hover:scale-125 hover:z-10 ${
                       day.level === -1 ? "bg-transparent" : levelColors[day.level]
                     }`;
                     const cellStyle = {
@@ -235,7 +234,7 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
                             aria-label={`${day.count} commits on ${day.date}`}
                           />
                         </TooltipTrigger>
-                        <TooltipContent className="text-[11px]">
+                        <TooltipContent className="text-[11px] rounded-none border-border font-mono">
                           <p>{day.count} {day.count === 1 ? "commit" : "commits"}</p>
                           <p className="text-muted-foreground">{formatContributionDate(day.date)}</p>
                         </TooltipContent>
@@ -250,14 +249,14 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between mt-3 text-sm text-muted-foreground">
-        <span>{totalContributions.toLocaleString()} activities in {year}</span>
-        <div className="flex items-center gap-1.5">
+      <div className="flex flex-wrap items-center justify-between mt-4 text-xs font-mono text-muted-foreground uppercase tracking-wider">
+        <span>{totalContributions.toLocaleString()} contributions / {year}</span>
+        <div className="flex items-center gap-2 mt-2 sm:mt-0">
           <span>Less</span>
           {levelColors.map((color, i) => (
             <div
               key={i}
-              className={`size-[10px] rounded-[2px] ${color}`}
+              className={`size-[10px] rounded-[1px] ${color}`}
             />
           ))}
           <span>More</span>

@@ -15,51 +15,51 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
 ---
 
 <Layout title={`${profile.name} - Portfolio`} description={profile.bio.split('\n')[0]}>
-  <main class="max-w-[760px] mx-auto py-8 px-4 md:px-6">
-    <section class="dashed-border-section h-56 border-b-0 p-4 sm:p-5">
-      <div class="dot-grid-panel size-full"></div>
-    </section>
+  <main class="min-h-screen">
+    {/* Decorative top grid */}
+    <div class="fixed inset-0 pointer-events-none z-[-1] opacity-20" 
+         style="background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 50px 50px;">
+    </div>
 
     <!-- Hero Section -->
-    <div class="mb-0">
+    <div class="mb-12">
       <Hero profile={profile} client:load />
-      <div class="dashed-border-section border-t-0">
+      <div class="max-w-5xl mx-auto px-4 sm:px-8 mt-8">
         <SocialLinks socials={socials} client:load />
       </div>
     </div>
 
     <!-- GitHub Activity -->
-    <Section className="border-t-0">
+    <Section>
+      <SectionHeader title="Contribution Graph" description="A visual record of my code commits and activity over the last year." />
       <GitHubActivity username={github.username} client:load />
     </Section>
 
     <!-- Experiences -->
-    <Section className="border-t-0">
-      <SectionHeader title="Experiences" />
+    <Section>
+      <SectionHeader title="Experience" description="My professional journey and career milestones." />
       <Experiences experiences={experiences} client:load />
     </Section>
 
     <!-- Projects -->
-    <Section className="border-t-0">
-      <SectionHeader title="Projects" />
+    <Section>
+      <SectionHeader title="Selected Projects" description="Highlights of my best work and side projects." />
       <Projects projects={projects} client:load />
     </Section>
 
     <!-- Skills -->
-    <Section className="border-t-0">
-      <SectionHeader title="Skills & Technologies" />
+    <Section>
+      <SectionHeader title="Tech Stack" description="The tools and technologies I use to build." />
       <Skills skills={skills} client:load />
     </Section>
 
     <!-- Newsletter + Quote -->
-    <Section className="border-t-0">
-      <SectionHeader title="Newsletter" />
+    <Section>
+      <SectionHeader title="Get in Touch" />
       <ContactCTA email={profile.email} quote={quote} client:load />
     </Section>
 
-    <section class="dashed-border-section border-t-0 h-56 p-4 sm:p-5">
-      <div class="dot-grid-panel size-full"></div>
-    </section>
+    <div class="h-24"></div>
 
     <!-- Scroll to top -->
     <ScrollToTop client:load />

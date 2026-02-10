@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./ThemeToggle"
-import { RefreshCcw, Eye, Calendar, Mail } from "lucide-react"
+import { RefreshCcw, Eye, Calendar, Mail, ArrowUpRight } from "lucide-react"
 
 interface HeroProps {
   profile: {
@@ -24,8 +24,8 @@ export function Hero({ profile }: HeroProps) {
       setTimeout(() => {
         setCurrentTitleIndex((prev) => (prev + 1) % profile.titles.length)
         setIsAnimating(false)
-      }, 400)
-    }, 3000)
+      }, 500)
+    }, 4000)
 
     return () => clearInterval(interval)
   }, [profile.titles.length])
@@ -35,44 +35,38 @@ export function Hero({ profile }: HeroProps) {
     setTimeout(() => {
       setCurrentTitleIndex((prev) => (prev + 1) % profile.titles.length)
       setIsAnimating(false)
-    }, 400)
+    }, 500)
   }
 
   return (
-    <div>
-      {/* Profile section */}
-      <div className="dashed-border-section p-4 sm:p-5 md:p-6 relative">
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
-          {/* Avatar */}
-          <div className="shrink-0">
-            <div className="size-24 rounded-xl overflow-hidden bg-muted border border-border shadow-sm">
-              <img
-                src={profile.avatar}
-                alt={profile.name}
-                className="size-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.style.display = "none"
-                  target.parentElement!.innerHTML = `
-                    <div class="size-full flex items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/20 text-2xl font-semibold text-muted-foreground">
-                      ${profile.name.charAt(0)}
-                    </div>
-                  `
-                }}
-              />
+    <div className="relative pt-10 pb-8 px-4 sm:px-8 max-w-5xl mx-auto">
+      {/* Top Controls */}
+      <div className="absolute top-0 right-4 sm:right-8 flex items-center gap-3">
+        <ThemeToggle />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-start">
+        {/* Left Content */}
+        <div className="space-y-8">
+          <div className="space-y-2">
+             <div className="flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase mb-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              Available for work
             </div>
-          </div>
-
-          {/* Info */}
-          <div className="flex-1 min-w-0 flex flex-col justify-center h-full pt-1">
-            <h1 className="text-[2.15rem] sm:text-[2.35rem] font-bold tracking-tight leading-[1.15] mb-1">
-              {profile.name}
+            
+            <h1 className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-[0.9] text-foreground mix-blend-difference">
+              {profile.name.split(' ').map((word, i) => (
+                <span key={i} className="block">{word}</span>
+              ))}
             </h1>
-
-            {/* Animated title */}
-            <div className="h-6 overflow-hidden pr-12">
+            
+            <div className="h-8 overflow-hidden flex items-center gap-2 mt-4">
+              <span className="text-muted-foreground font-mono text-lg">{'>'}</span>
               <p
-                className={`text-muted-foreground font-medium text-base ${
+                className={`text-xl sm:text-2xl font-medium text-muted-foreground ${
                   isAnimating ? "title-exit" : "title-enter"
                 }`}
               >
@@ -81,55 +75,59 @@ export function Hero({ profile }: HeroProps) {
             </div>
           </div>
 
-          {/* Top Right Icons */}
-          <div className="absolute top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-1.5">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="size-7 text-muted-foreground hover:text-foreground hover:bg-transparent"
-              onClick={cycleTitle}
-              title="Change title"
-            >
-              <RefreshCcw className="size-3.5" />
-            </Button>
-            <ThemeToggle />
+          <div className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed font-light">
+            {profile.bio.split("\n\n")[0]}
           </div>
 
-          {/* Bottom Right View Count */}
-          <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
-            <Eye className="size-3.5 opacity-80" />
-            <span>2.9k</span>
+          <div className="flex flex-wrap gap-4 pt-2">
+            <Button asChild size="lg" className="rounded-none border-2 border-primary bg-primary text-primary-foreground hover:bg-transparent hover:text-primary transition-all duration-300 shadow-[4px_4px_0px_0px_var(--primary-foreground)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+              <a
+                href={profile.calendarLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Calendar className="mr-2 size-5" />
+                Book Intro
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="rounded-none border-2 bg-transparent hover:bg-secondary transition-all duration-300">
+              <a href={`mailto:${profile.email}`}>
+                <Mail className="mr-2 size-5" />
+                Email Me
+              </a>
+            </Button>
+          </div>
+        </div>
+
+        {/* Right Avatar */}
+        <div className="relative group md:mt-8 mx-auto md:mx-0">
+          <div className="absolute -inset-2 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="tech-corners p-2 relative">
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 overflow-hidden bg-muted grayscale hover:grayscale-0 transition-all duration-500">
+              <img
+                src={profile.avatar}
+                alt={profile.name}
+                className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-background/20 to-transparent mix-blend-overlay"></div>
+            </div>
+            
+            {/* Tech decorative elements */}
+            <div className="absolute -right-3 top-10 text-[0.6rem] font-mono writing-vertical-rl text-muted-foreground/50">
+              SYS.ID: {Math.floor(Math.random() * 9999)}
+            </div>
+            <div className="absolute -bottom-6 left-0 text-xs font-mono text-muted-foreground/50 flex gap-4">
+              <span>FIG.01</span>
+              <span>DEV_PROFILE</span>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Bio section */}
-      <div className="dashed-border-section border-t-0 p-4 sm:p-5 md:p-6">
-        <div className="text-foreground/85 text-[1.02rem] leading-8 space-y-3 mb-5">
-          {profile.bio.split("\n\n").map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-2.5">
-          <Button asChild className="gap-2 h-9 rounded-[10px] bg-primary text-primary-foreground hover:bg-primary/90">
-            <a
-              href={profile.calendarLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Calendar className="size-4" />
-              Book an intro call
-            </a>
-          </Button>
-          <Button variant="secondary" asChild className="gap-2 h-9 rounded-[10px] border border-border bg-secondary/70 hover:bg-secondary">
-            <a href={`mailto:${profile.email}`}>
-              <Mail className="size-4" />
-              Send an email
-            </a>
-          </Button>
-        </div>
+      
+      {/* Scroll indicator */}
+       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-50 animate-bounce">
+        <span className="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
+        <div className="w-[1px] h-8 bg-foreground"></div>
       </div>
     </div>
   )

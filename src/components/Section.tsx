@@ -14,35 +14,40 @@ export function Section({
   variant = "default",
   noBorder = false,
 }: SectionProps) {
-  const bgVariants = {
-    default: "",
-    "dot-grid": "dot-grid-bg",
-    diagonal: "diagonal-lines-bg",
-  };
-
   return (
     <section
       className={cn(
-        "relative",
-        !noBorder && "dashed-border-section",
-        bgVariants[variant],
+        "relative py-12 md:py-16",
+        !noBorder && "border-t border-border",
         className
       )}
     >
-      {children}
+      <div className="max-w-5xl mx-auto px-4 sm:px-8">
+        {children}
+      </div>
     </section>
   );
 }
 
 interface SectionHeaderProps {
   title: string;
+  description?: string;
   className?: string;
 }
 
-export function SectionHeader({ title, className }: SectionHeaderProps) {
+export function SectionHeader({ title, description, className }: SectionHeaderProps) {
   return (
-    <div className={cn("dashed-border-section border-t-0 border-x-0 px-4 sm:px-5 md:px-6 py-3.5", className)}>
-      <h2 className="text-[1.95rem] font-semibold tracking-tight leading-none">{title}</h2>
+    <div className={cn("mb-12", className)}>
+      <div className="flex items-center gap-4 mb-4">
+        <div className="h-[1px] w-12 bg-primary"></div>
+        <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary">
+          Section_0{Math.floor(Math.random() * 9) + 1}
+        </span>
+      </div>
+      <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-2 uppercase">{title}</h2>
+      {description && (
+        <p className="text-muted-foreground text-lg max-w-2xl font-light">{description}</p>
+      )}
     </div>
   );
 }

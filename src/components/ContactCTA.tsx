@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Mail } from "lucide-react";
 
 interface ContactCTAProps {
   email: string;
@@ -10,60 +11,48 @@ interface ContactCTAProps {
 
 export function ContactCTA({ email, quote }: ContactCTAProps) {
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
       {/* CTA Section */}
-      <div className="diagonal-lines-bg px-6 py-12 text-center border-b border-dashed border-border">
-        <h2 className="text-xl font-semibold mb-2">Let's work together</h2>
-        <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-          I'm currently available for freelance work and new opportunities. Feel free to reach out!
-        </p>
-        <Button asChild size="lg" className="gap-2">
-          <a href={`mailto:${email}`}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4"
-            >
-              <rect width="20" height="16" x="2" y="4" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-            Send an email
-          </a>
-        </Button>
+      <div className="bg-primary text-primary-foreground p-8 md:p-12 flex flex-col justify-between min-h-[300px] relative overflow-hidden group">
+        <div className="relative z-10">
+          <h2 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
+            READY TO<br />BUILD?
+          </h2>
+          <p className="text-primary-foreground/80 max-w-sm text-lg">
+            Available for freelance projects and consulting.
+          </p>
+        </div>
+        
+        <div className="relative z-10 mt-8">
+          <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto h-14 text-lg font-bold rounded-none border-2 border-transparent hover:border-primary-foreground hover:bg-transparent hover:text-primary-foreground transition-all">
+            <a href={`mailto:${email}`}>
+              <Mail className="mr-2 size-5" />
+              {email}
+            </a>
+          </Button>
+        </div>
+
+        {/* Decorative */}
+        <div className="absolute top-0 right-0 p-4 opacity-20">
+          <div className="size-32 rounded-full border-[20px] border-primary-foreground"></div>
+        </div>
+        <div className="absolute -bottom-10 -right-10 size-64 bg-primary-foreground/10 rounded-full blur-3xl group-hover:bg-primary-foreground/20 transition-all duration-700"></div>
       </div>
 
       {/* Quote Section */}
-      <div className="dot-grid-bg px-6 py-16 text-center">
-        {/* Large quote marks */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="size-12 text-muted-foreground/20 mx-auto mb-6"
-        >
-          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-        </svg>
-
-        {/* Quote text */}
-        <blockquote className="max-w-2xl mx-auto mb-6">
-          <p className="text-xl md:text-2xl font-medium italic leading-relaxed">
-            "{quote.text}"
+      <div className="bg-muted p-8 md:p-12 flex flex-col justify-center text-center md:text-left relative">
+        <blockquote className="relative z-10">
+          <span className="text-6xl font-black text-border absolute -top-8 -left-4 select-none">"</span>
+          <p className="text-2xl md:text-3xl font-bold leading-tight mb-6">
+            {quote.text}
           </p>
+          <footer className="flex items-center gap-4 md:justify-start justify-center">
+            <div className="h-[2px] w-8 bg-primary"></div>
+            <cite className="not-italic font-mono text-sm uppercase tracking-widest text-muted-foreground">
+              {quote.author}
+            </cite>
+          </footer>
         </blockquote>
-
-        {/* Author attribution */}
-        <div className="flex items-center justify-center gap-4">
-          <div className="h-px w-8 bg-border" />
-          <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
-            {quote.author}
-          </span>
-          <div className="h-px w-8 bg-border" />
-        </div>
       </div>
     </div>
   );
