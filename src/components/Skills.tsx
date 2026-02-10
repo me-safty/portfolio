@@ -90,13 +90,13 @@ const skillIcons: Record<string, JSX.Element> = {
 
 export function Skills({ skills }: SkillsProps) {
   return (
-    <div className="px-6 py-6">
-      <div className="flex flex-wrap justify-center gap-2">
+    <div className="px-4 sm:px-5 md:px-6 py-4">
+      <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
           <Badge
             key={skill.name}
             variant="outline"
-            className="gap-1.5 px-3 py-1.5 text-sm font-normal"
+            className="gap-1.5 rounded-[10px] border-border bg-card px-3 py-1.5 text-base font-normal text-foreground/75"
           >
             {skillIcons[skill.icon] || (
               <span className="size-3.5 rounded bg-muted" />

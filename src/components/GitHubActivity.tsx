@@ -148,6 +148,7 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
 
   const weeks = groupByWeeks(contributions);
   const monthLabels = getMonthLabels(weeks);
+  const columnStep = 13;
 
   const levelColors = [
     "bg-muted",
@@ -159,7 +160,7 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
 
   if (loading) {
     return (
-      <div className="px-6 py-8">
+      <div className="px-4 sm:px-5 md:px-6 py-6">
         <div className="animate-pulse">
           <div className="h-4 bg-muted rounded w-24 mb-4" />
           <div className="h-20 bg-muted rounded" />
@@ -169,18 +170,17 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
   }
 
   return (
-    <div className="px-6 py-4">
+    <div className="px-4 sm:px-5 md:px-6 py-4">
       {/* Month labels */}
       <div className="overflow-x-auto">
-        <div className="min-w-[720px]">
-          <div className="flex text-xs text-muted-foreground mb-2 ml-0">
+        <div className="min-w-[690px]">
+          <div className="relative h-4 mb-2">
             {monthLabels.map(({ month, index }) => (
               <span
                 key={`${month}-${index}`}
-                className="flex-none"
+                className="absolute text-sm text-muted-foreground"
                 style={{
-                  marginLeft: index === 0 ? 0 : `${(index - (monthLabels[monthLabels.indexOf({ month, index }) - 1]?.index ?? 0)) * 13 - 24}px`,
-                  width: "48px",
+                  left: `${index * columnStep}px`,
                 }}
               >
                 {month}
@@ -211,9 +211,9 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
+      <div className="flex items-center justify-between mt-3 text-sm text-muted-foreground">
         <span>{totalContributions.toLocaleString()} activities in {year}</span>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <span>Less</span>
           {levelColors.map((color, i) => (
             <div

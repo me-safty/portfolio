@@ -24,16 +24,22 @@ interface ExperiencesProps {
   experiences: Experience[];
 }
 
-function ExperienceCard({ experience }: { experience: Experience }) {
-  const [isOpen, setIsOpen] = useState(false);
+function ExperienceCard({
+  experience,
+  defaultOpen = false,
+}: {
+  experience: Experience;
+  defaultOpen?: boolean;
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <div className="dashed-border-section border-t-0 border-x-0 last:border-b-0">
         <CollapsibleTrigger asChild>
-          <button className="w-full px-6 py-4 flex items-start gap-4 text-left hover:bg-muted/50 transition-colors">
+          <button className="w-full px-4 sm:px-5 md:px-6 py-4 flex items-start gap-3 text-left hover:bg-muted/40 transition-colors">
             {/* Company logo */}
-            <div className="size-12 rounded-lg bg-muted border flex items-center justify-center shrink-0 overflow-hidden">
+            <div className="size-12 rounded-xl bg-muted border flex items-center justify-center shrink-0 overflow-hidden">
               <img
                 src={experience.logo}
                 alt={experience.company}
@@ -53,20 +59,20 @@ function ExperienceCard({ experience }: { experience: Experience }) {
             {/* Info */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-semibold">{experience.company}</span>
-                <Badge variant="outline" className="text-xs">
+                <span className="text-2xl font-semibold leading-none">{experience.company}</span>
+                <Badge variant="outline" className="text-sm font-normal rounded-[8px] px-2 py-0.5">
                   {experience.type}
                 </Badge>
               </div>
-              <p className="text-sm text-muted-foreground">{experience.role}</p>
+              <p className="text-[1.05rem] text-muted-foreground mt-1">{experience.role}</p>
             </div>
 
             {/* Date and location */}
             <div className="text-right shrink-0 hidden sm:block">
-              <p className="text-sm font-medium">
+              <p className="text-[1.02rem] font-medium">
                 {experience.startDate} - {experience.endDate}
               </p>
-              <p className="text-xs text-muted-foreground">{experience.location}</p>
+              <p className="text-[1.02rem] text-muted-foreground mt-0.5">{experience.location}</p>
             </div>
 
             {/* Expand icon */}
@@ -88,16 +94,16 @@ function ExperienceCard({ experience }: { experience: Experience }) {
         </CollapsibleTrigger>
 
         <CollapsibleContent>
-          <div className="px-6 pb-4 pl-[88px]">
+          <div className="px-4 sm:px-5 md:px-6 pb-4 pl-[4.25rem] sm:pl-[4.75rem]">
             {/* Mobile date */}
-            <p className="text-sm text-muted-foreground mb-3 sm:hidden">
+            <p className="text-[1.02rem] text-muted-foreground mb-3 sm:hidden">
               {experience.startDate} - {experience.endDate} · {experience.location}
             </p>
 
             {/* Description */}
-            <ul className="space-y-2 mb-4">
+            <ul className="space-y-2.5 mb-4">
               {experience.description.map((item, i) => (
-                <li key={i} className="flex gap-2 text-sm text-muted-foreground">
+                <li key={i} className="flex gap-2 text-[1.04rem] leading-8 text-foreground/85">
                   <span className="text-foreground mt-1.5">•</span>
                   <span>{item}</span>
                 </li>
@@ -105,9 +111,9 @@ function ExperienceCard({ experience }: { experience: Experience }) {
             </ul>
 
             {/* Technologies */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {experience.technologies.map((tech) => (
-                <Badge key={tech} variant="secondary" className="text-xs">
+                <Badge key={tech} variant="outline" className="text-sm font-normal rounded-[8px] border-border bg-secondary/60">
                   {tech}
                 </Badge>
               ))}
@@ -125,8 +131,8 @@ export function Experiences({ experiences }: ExperiencesProps) {
 
   return (
     <div>
-      {displayedExperiences.map((exp) => (
-        <ExperienceCard key={exp.id} experience={exp} />
+      {displayedExperiences.map((exp, index) => (
+        <ExperienceCard key={exp.id} experience={exp} defaultOpen={index === 0} />
       ))}
 
       {experiences.length > 3 && (
@@ -134,7 +140,7 @@ export function Experiences({ experiences }: ExperiencesProps) {
           <Button
             variant="default"
             onClick={() => setShowAll(!showAll)}
-            className="gap-2"
+            className="h-10 rounded-[12px] border border-border/70 px-5 text-base"
           >
             {showAll ? "Show Less" : "View All"}
             <svg

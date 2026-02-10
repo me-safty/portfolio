@@ -1,4 +1,4 @@
-]{
+{
   "profile": {
     "name": "Mohamed Safty",
     "titles": [
@@ -39,7 +39,7 @@
     {
       "id": "exp-1",
       "company": "Tech Company",
-      "logo": "/logos/company.png",
+      "logo": "/image.jpeg",
       "role": "Software Engineer",
       "type": "Full Time",
       "startDate": "Aug, 2025",
@@ -64,7 +64,7 @@
     {
       "id": "exp-2",
       "company": "Open Source Project",
-      "logo": "/logos/opensource.png",
+      "logo": "/image.jpeg",
       "role": "Full Stack Developer",
       "type": "Contributor",
       "startDate": "May, 2025",
@@ -79,7 +79,7 @@
     {
       "id": "exp-3",
       "company": "Freelance",
-      "logo": "/logos/freelance.png",
+      "logo": "/image.jpeg",
       "role": "Freelance Developer",
       "type": "Self-employed",
       "startDate": "Jan, 2024",
@@ -96,7 +96,7 @@
     {
       "id": "proj-1",
       "name": "Project Alpha",
-      "image": "/projects/alpha.png",
+      "image": "/image.jpeg",
       "label": "Featured",
       "description": "A social platform where developers share projects, ideas, and grow together.",
       "status": "Live",
@@ -106,7 +106,7 @@
     {
       "id": "proj-2",
       "name": "Project Beta",
-      "image": "/projects/beta.png",
+      "image": "/image.jpeg",
       "label": "Home Feed",
       "description": "Record studio-quality remote audio and video, locally captured without quality loss.",
       "status": "Building",
@@ -116,7 +116,7 @@
     {
       "id": "proj-3",
       "name": "Project Gamma",
-      "image": "/projects/gamma.png",
+      "image": "/image.jpeg",
       "label": "News Screen",
       "description": "A news website presenting cases through a clean, newspaper-style interface.",
       "status": "Live",
@@ -126,7 +126,7 @@
     {
       "id": "proj-4",
       "name": "Project Delta",
-      "image": "/projects/delta.png",
+      "image": "/image.jpeg",
       "label": "Coming Soon",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, itaque.",
       "status": "Building",

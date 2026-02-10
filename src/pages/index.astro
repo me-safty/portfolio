@@ -6,17 +6,18 @@ import { GitHubActivity } from '../components/GitHubActivity';
 import { Experiences } from '../components/Experiences';
 import { Projects } from '../components/Projects';
 import { Skills } from '../components/Skills';
-import { Testimonials } from '../components/Testimonials';
 import { ContactCTA } from '../components/ContactCTA';
 import { ScrollToTop } from '../components/ScrollToTop';
 import { Section, SectionHeader } from '../components/Section';
 import portfolioData from '../data/portfolio.json';
 
-const { profile, socials, experiences, projects, skills, testimonials, quote, github } = portfolioData;
+const { profile, socials, experiences, projects, skills, quote, github } = portfolioData;
 ---
 
 <Layout title={`${profile.name} - Portfolio`} description={profile.bio.split('\n')[0]}>
-  <main class="max-w-4xl mx-auto py-8 px-4 md:px-8">
+  <main class="max-w-[760px] mx-auto py-8 px-4 md:px-6">
+    <section class="dashed-border-section dot-grid-bg h-56 border-b-0" />
+
     <!-- Hero Section -->
     <div class="mb-0">
       <Hero profile={profile} client:load />
@@ -48,16 +49,13 @@ const { profile, socials, experiences, projects, skills, testimonials, quote, gi
       <Skills skills={skills} client:load />
     </Section>
 
-    <!-- Testimonials -->
+    <!-- Newsletter + Quote -->
     <Section className="border-t-0">
-      <SectionHeader title="What People Say" />
-      <Testimonials testimonials={testimonials} client:load />
-    </Section>
-
-    <!-- Contact CTA & Quote -->
-    <Section className="border-t-0" noBorder>
+      <SectionHeader title="Newsletter" />
       <ContactCTA email={profile.email} quote={quote} client:load />
     </Section>
+
+    <section class="dashed-border-section dot-grid-bg border-t-0 h-56" />
 
     <!-- Scroll to top -->
     <ScrollToTop client:load />

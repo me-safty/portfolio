@@ -51,23 +51,23 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --background: #f2f2f4;
+  --foreground: #35363c;
+  --card: #f8f8f9;
+  --card-foreground: #35363c;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --primary: #4b4c59;
+  --primary-foreground: #f6f6f7;
+  --secondary: #ececef;
+  --secondary-foreground: #4a4b53;
+  --muted: #ececef;
+  --muted-foreground: #7a7b87;
+  --accent: #e7e7ea;
+  --accent-foreground: #2f3036;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: #d1d2d8;
+  --input: #d5d6dc;
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -131,10 +131,10 @@
 .dot-grid-bg {
   background-image: radial-gradient(
     circle,
-    var(--border) 1.25px,
+    color-mix(in srgb, var(--border) 85%, transparent) 1.2px,
     transparent 1.25px
   );
-  background-size: 16px 16px;
+  background-size: 8px 8px;
 }
 
 .dashed-border-section {
@@ -147,8 +147,8 @@
     -45deg,
     transparent,
     transparent 4px,
-    var(--border) 4px,
-    var(--border) 5px
+    color-mix(in srgb, var(--border) 65%, transparent) 4px,
+    color-mix(in srgb, var(--border) 65%, transparent) 5px
   );
 }
 

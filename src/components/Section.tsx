@@ -41,8 +41,8 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ title, className }: SectionHeaderProps) {
   return (
-    <div className={cn("dashed-border-section border-t-0 border-x-0 px-6 py-4", className)}>
-      <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+    <div className={cn("dashed-border-section border-t-0 border-x-0 px-4 sm:px-5 md:px-6 py-3.5", className)}>
+      <h2 className="text-[1.95rem] font-semibold tracking-tight leading-none">{title}</h2>
     </div>
   );
 }

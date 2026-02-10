@@ -45,22 +45,22 @@ const socialIcons: Record<string, React.JSX.Element> = {
 };
 
 export function SocialLinks({ socials }: SocialLinksProps) {
-  const displayedSocials = socials.slice(0, 5);
-  const moreSocials = socials.slice(5);
+  const displayedSocials = socials.slice(0, 6);
+  const moreSocials = socials.slice(6);
 
   return (
-    <div className="px-6 pb-6">
-      <p className="text-sm text-muted-foreground mb-3">
+    <div className="px-4 sm:px-5 md:px-6 pb-5">
+      <p className="text-sm text-muted-foreground mb-3.5">
         Here are my <span className="font-medium text-foreground">socials</span>
       </p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5">
         {displayedSocials.map((social) => (
           <Button
             key={social.name}
             variant="secondary"
             size="sm"
             asChild
-            className="gap-2 h-9 px-3"
+            className="gap-1.5 h-8 rounded-[8px] px-2.5 border border-border bg-secondary/70 hover:bg-secondary"
           >
             <a href={social.url} target="_blank" rel="noopener noreferrer">
               {socialIcons[social.icon] || (
@@ -83,7 +83,11 @@ export function SocialLinks({ socials }: SocialLinksProps) {
           </Button>
         ))}
         {moreSocials.length > 0 && (
-          <Button variant="secondary" size="sm" className="gap-2 h-9 px-3">
+          <Button
+            variant="secondary"
+            size="sm"
+            className="gap-1.5 h-8 rounded-[8px] px-2.5 border border-border bg-secondary/70 hover:bg-secondary"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
