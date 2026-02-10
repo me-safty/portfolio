@@ -131,15 +131,26 @@
 .dot-grid-bg {
   background-image: radial-gradient(
     circle,
-    color-mix(in srgb, var(--border) 85%, transparent) 1.2px,
-    transparent 1.25px
+    color-mix(in srgb, var(--border) 70%, transparent) 1px,
+    transparent 1.1px
   );
-  background-size: 8px 8px;
+  background-size: 7px 7px;
 }
 
 .dashed-border-section {
   position: relative;
-  border: 1px dashed var(--border);
+  border: 1px dashed color-mix(in srgb, var(--border) 90%, transparent);
+}
+
+.dot-grid-panel {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--border) 66%, transparent) 1px,
+    transparent 1.1px
+  );
+  background-size: 7px 7px;
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  border-radius: 2px;
 }
 
 .diagonal-lines-bg {

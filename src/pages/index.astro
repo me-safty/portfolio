@@ -16,7 +16,9 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
 
 <Layout title={`${profile.name} - Portfolio`} description={profile.bio.split('\n')[0]}>
   <main class="max-w-[760px] mx-auto py-8 px-4 md:px-6">
-    <section class="dashed-border-section dot-grid-bg h-56 border-b-0" />
+    <section class="dashed-border-section h-56 border-b-0 p-4 sm:p-5">
+      <div class="dot-grid-panel size-full"></div>
+    </section>
 
     <!-- Hero Section -->
     <div class="mb-0">
@@ -55,7 +57,9 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
       <ContactCTA email={profile.email} quote={quote} client:load />
     </Section>
 
-    <section class="dashed-border-section dot-grid-bg border-t-0 h-56" />
+    <section class="dashed-border-section border-t-0 h-56 p-4 sm:p-5">
+      <div class="dot-grid-panel size-full"></div>
+    </section>
 
     <!-- Scroll to top -->
     <ScrollToTop client:load />

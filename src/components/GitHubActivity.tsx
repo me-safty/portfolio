@@ -1,4 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface ContributionDay {
   date: string;
@@ -8,6 +14,14 @@ interface ContributionDay {
 
 interface GitHubActivityProps {
   username: string;
+}
+
+function formatContributionDate(date: string) {
+  return new Date(date).toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 // Generate mock data for fallback
@@ -189,24 +203,49 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
           </div>
 
           {/* Contribution grid */}
-          <div className="flex gap-[3px]">
-            {weeks.map((week, weekIndex) => (
-              <div key={weekIndex} className="flex flex-col gap-[3px]">
-                {week.map((day, dayIndex) => (
-                  <div
-                    key={`${weekIndex}-${dayIndex}`}
-                    className={`size-[10px] rounded-[2px] contribution-cell ${
+          <TooltipProvider delayDuration={60}>
+            <div className="flex gap-[3px]">
+              {weeks.map((week, weekIndex) => (
+                <div key={weekIndex} className="flex flex-col gap-[3px]">
+                  {week.map((day, dayIndex) => {
+                    const cellClass = `size-[10px] rounded-[2px] contribution-cell ${
                       day.level === -1 ? "bg-transparent" : levelColors[day.level]
-                    }`}
-                    style={{
+                    }`;
+                    const cellStyle = {
                       "--delay": `${(weekIndex * 7 + dayIndex) * 2}ms`,
-                    } as React.CSSProperties}
-                    title={day.date ? `${day.count} contributions on ${day.date}` : undefined}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
+                    } as CSSProperties;
+
+                    if (!day.date) {
+                      return (
+                        <div
+                          key={`${weekIndex}-${dayIndex}`}
+                          className={cellClass}
+                          style={cellStyle}
+                        />
+                      );
+                    }
+
+                    return (
+                      <Tooltip key={`${weekIndex}-${dayIndex}`}>
+                        <TooltipTrigger asChild>
+                          <button
+                            type="button"
+                            className={`${cellClass} cursor-default`}
+                            style={cellStyle}
+                            aria-label={`${day.count} commits on ${day.date}`}
+                          />
+                        </TooltipTrigger>
+                        <TooltipContent className="text-[11px]">
+                          <p>{day.count} {day.count === 1 ? "commit" : "commits"}</p>
+                          <p className="text-muted-foreground">{formatContributionDate(day.date)}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </TooltipProvider>
         </div>
       </div>
 
