@@ -140,7 +140,7 @@ export function Experiences({ experiences }: ExperiencesProps) {
           <Button
             variant="default"
             onClick={() => setShowAll(!showAll)}
-            className="h-10 rounded-[12px] border border-border/70 px-5 text-base"
+            className="h-10 rounded-lg px-5 text-base gap-1.5"
           >
             {showAll ? "Show Less" : "View All"}
             <svg
@@ -151,10 +151,10 @@ export function Experiences({ experiences }: ExperiencesProps) {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="size-4"
+              className={`size-4 transition-transform ${showAll ? "rotate-180" : ""}`}
             >
-              <path d="M7 7h10v10" />
               <path d="M7 17 17 7" />
+              <path d="M7 7h10v10" />
             </svg>
           </Button>
         </div>

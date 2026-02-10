@@ -42,10 +42,10 @@ export function Hero({ profile }: HeroProps) {
     <div>
       {/* Profile section */}
       <div className="dashed-border-section p-4 sm:p-5 md:p-6 relative">
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
-          {/* Avatar */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+          {/* Avatar - circular like reference */}
           <div className="shrink-0">
-            <div className="size-24 rounded-xl overflow-hidden bg-muted border border-border shadow-sm">
+            <div className="size-20 sm:size-24 rounded-full overflow-hidden bg-muted border border-border shadow-sm">
               <img
                 src={profile.avatar}
                 alt={profile.name}
@@ -54,7 +54,7 @@ export function Hero({ profile }: HeroProps) {
                   const target = e.target as HTMLImageElement
                   target.style.display = "none"
                   target.parentElement!.innerHTML = `
-                    <div class="size-full flex items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/20 text-2xl font-semibold text-muted-foreground">
+                    <div class="size-full flex items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/20 text-xl font-semibold text-muted-foreground">
                       ${profile.name.charAt(0)}
                     </div>
                   `
@@ -64,41 +64,42 @@ export function Hero({ profile }: HeroProps) {
           </div>
 
           {/* Info */}
-          <div className="flex-1 min-w-0 flex flex-col justify-center h-full pt-1">
-            <h1 className="text-[2.15rem] sm:text-[2.35rem] font-bold tracking-tight leading-[1.15] mb-1">
-              {profile.name}
-            </h1>
-
-            {/* Animated title */}
-            <div className="h-6 overflow-hidden pr-12">
-              <p
-                className={`text-muted-foreground font-medium text-base ${
-                  isAnimating ? "title-exit" : "title-enter"
-                }`}
-              >
-                {profile.titles[currentTitleIndex]}
-              </p>
+          <div className="flex-1 min-w-0 flex flex-col justify-center">
+            <div className="flex items-start gap-3 justify-between">
+              <div>
+                <h1 className="text-2xl sm:text-[2rem] font-bold tracking-tight leading-[1.2] mb-0.5">
+                  {profile.name}
+                </h1>
+                {/* Animated title */}
+                <div className="h-5 overflow-hidden">
+                  <p
+                    className={`text-muted-foreground font-medium text-[0.95rem] ${
+                      isAnimating ? "title-exit" : "title-enter"
+                    }`}
+                  >
+                    {profile.titles[currentTitleIndex]}
+                  </p>
+                </div>
+                {/* View count - below name like reference */}
+                <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-2">
+                  <Eye className="size-3.5" />
+                  <span>2.9k</span>
+                </div>
+              </div>
+              {/* Top right: cycle title + theme toggle */}
+              <div className="flex items-center gap-1 shrink-0">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="size-7 text-muted-foreground hover:text-foreground hover:bg-transparent"
+                  onClick={cycleTitle}
+                  title="Change title"
+                >
+                  <RefreshCcw className="size-3.5" />
+                </Button>
+                <ThemeToggle />
+              </div>
             </div>
-          </div>
-
-          {/* Top Right Icons */}
-          <div className="absolute top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-1.5">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="size-7 text-muted-foreground hover:text-foreground hover:bg-transparent"
-              onClick={cycleTitle}
-              title="Change title"
-            >
-              <RefreshCcw className="size-3.5" />
-            </Button>
-            <ThemeToggle />
-          </div>
-
-          {/* Bottom Right View Count */}
-          <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
-            <Eye className="size-3.5 opacity-80" />
-            <span>2.9k</span>
           </div>
         </div>
       </div>

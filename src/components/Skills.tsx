@@ -96,7 +96,7 @@ export function Skills({ skills }: SkillsProps) {
           <Badge
             key={skill.name}
             variant="outline"
-            className="gap-1.5 rounded-[10px] border-border bg-card px-3 py-1.5 text-base font-normal text-foreground/75"
+            className="gap-1.5 rounded-[10px] border border-border bg-secondary/60 px-3 py-1.5 text-sm font-medium text-foreground hover:bg-secondary/80 transition-colors"
           >
             {skillIcons[skill.icon] || (
               <span className="size-3.5 rounded bg-muted" />

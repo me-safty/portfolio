@@ -15,7 +15,7 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
 ---
 
 <Layout title={`${profile.name} - Portfolio`} description={profile.bio.split('\n')[0]}>
-  <main class="max-w-[760px] mx-auto py-8 px-4 md:px-6">
+  <main class="max-w-[760px] mx-auto py-10 sm:py-12 px-4 md:px-6">
     <section class="dashed-border-section h-56 border-b-0 p-4 sm:p-5">
       <div class="dot-grid-panel size-full"></div>
     </section>
@@ -47,7 +47,7 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
 
     <!-- Skills -->
     <Section className="border-t-0">
-      <SectionHeader title="Skills & Technologies" />
+      <SectionHeader title="Skills & Technologies" showViewAll />
       <Skills skills={skills} client:load />
     </Section>
 
