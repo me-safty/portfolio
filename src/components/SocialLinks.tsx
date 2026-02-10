@@ -46,69 +46,37 @@ const socialIcons: Record<string, React.JSX.Element> = {
 
 export function SocialLinks({ socials }: SocialLinksProps) {
   const displayedSocials = socials.slice(0, 6);
-  const moreSocials = socials.slice(6);
 
   return (
-    <div className="px-4 sm:px-5 md:px-6 pb-5">
-      <p className="text-sm text-muted-foreground mb-3.5">
-        Here are my <span className="font-medium text-foreground">socials</span>
-      </p>
-      <div className="flex flex-wrap gap-1.5">
-        {displayedSocials.map((social) => (
-          <Button
-            key={social.name}
-            variant="secondary"
-            size="sm"
-            asChild
-            className="gap-1.5 h-8 rounded-[8px] px-2.5 border border-border bg-secondary/70 hover:bg-secondary"
-          >
-            <a href={social.url} target="_blank" rel="noopener noreferrer">
-              {socialIcons[social.icon] || (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="size-4"
-                >
-                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                </svg>
-              )}
-              {social.name}
-            </a>
-          </Button>
-        ))}
-        {moreSocials.length > 0 && (
-          <Button
-            variant="secondary"
-            size="sm"
-            className="gap-1.5 h-8 rounded-[8px] px-2.5 border border-border bg-secondary/70 hover:bg-secondary"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4"
-            >
-              <line x1="8" x2="21" y1="6" y2="6" />
-              <line x1="8" x2="21" y1="12" y2="12" />
-              <line x1="8" x2="21" y1="18" y2="18" />
-              <line x1="3" x2="3.01" y1="6" y2="6" />
-              <line x1="3" x2="3.01" y1="12" y2="12" />
-              <line x1="3" x2="3.01" y1="18" y2="18" />
-            </svg>
-            More
-          </Button>
-        )}
-      </div>
+    <div className="flex flex-wrap gap-2 mt-6">
+      {displayedSocials.map((social) => (
+        <Button
+          key={social.name}
+          variant="ghost"
+          size="sm"
+          asChild
+          className="h-8 px-2.5 text-muted-foreground hover:text-foreground hover:bg-transparent"
+        >
+          <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+            {socialIcons[social.icon] || (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-4"
+              >
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+              </svg>
+            )}
+            <span className="text-xs">{social.name}</span>
+          </a>
+        </Button>
+      ))}
     </div>
   );
 }

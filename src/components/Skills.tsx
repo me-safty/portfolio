@@ -9,7 +9,6 @@ interface SkillsProps {
   skills: Skill[];
 }
 
-// Simple icon mapping with SVG icons
 const skillIcons: Record<string, JSX.Element> = {
   react: (
     <svg viewBox="0 0 24 24" fill="currentColor" className="size-3.5">
@@ -90,21 +89,17 @@ const skillIcons: Record<string, JSX.Element> = {
 
 export function Skills({ skills }: SkillsProps) {
   return (
-    <div className="px-4 sm:px-5 md:px-6 py-4">
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill) => (
-          <Badge
-            key={skill.name}
-            variant="outline"
-            className="gap-1.5 rounded-[10px] border-border bg-card px-3 py-1.5 text-base font-normal text-foreground/75"
-          >
-            {skillIcons[skill.icon] || (
-              <span className="size-3.5 rounded bg-muted" />
-            )}
-            {skill.name}
-          </Badge>
-        ))}
-      </div>
+    <div className="flex flex-wrap gap-1.5">
+      {skills.map((skill) => (
+        <Badge
+          key={skill.name}
+          variant="secondary"
+          className="gap-1.5 rounded-md border-0 bg-muted/60 px-2.5 py-1 text-xs font-normal text-foreground/80"
+        >
+          {skillIcons[skill.icon] || <span className="size-3 rounded bg-muted-foreground/30" />}
+          {skill.name}
+        </Badge>
+      ))}
     </div>
   );
 }

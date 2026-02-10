@@ -1,35 +1,25 @@
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 
 export function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 400);
     };
-
     window.addEventListener("scroll", toggleVisibility);
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <Button
-      variant="default"
-      size="icon"
+    <button
+      type="button"
       onClick={scrollToTop}
-      className={`scroll-to-top ${isVisible ? "visible" : ""}`}
+      className={`scroll-to-top fixed bottom-8 right-8 z-50 size-9 rounded-lg bg-foreground/90 text-background flex items-center justify-center hover:bg-foreground transition-colors ${isVisible ? "visible" : ""}`}
       aria-label="Scroll to top"
     >
       <svg
@@ -44,6 +34,6 @@ export function ScrollToTop() {
       >
         <path d="m18 15-6-6-6 6" />
       </svg>
-    </Button>
+    </button>
   );
 }

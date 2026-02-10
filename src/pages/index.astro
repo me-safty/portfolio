@@ -15,53 +15,36 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
 ---
 
 <Layout title={`${profile.name} - Portfolio`} description={profile.bio.split('\n')[0]}>
-  <main class="max-w-[760px] mx-auto py-8 px-4 md:px-6">
-    <section class="dashed-border-section h-56 border-b-0 p-4 sm:p-5">
-      <div class="dot-grid-panel size-full"></div>
-    </section>
-
-    <!-- Hero Section -->
-    <div class="mb-0">
+  <main class="max-w-[640px] mx-auto py-16 px-5 md:px-8">
+    <div class="animate-fade-up">
       <Hero profile={profile} client:load />
-      <div class="dashed-border-section border-t-0">
-        <SocialLinks socials={socials} client:load />
-      </div>
+      <SocialLinks socials={socials} client:load />
     </div>
 
-    <!-- GitHub Activity -->
-    <Section className="border-t-0">
+    <Section className="animate-fade-up" style="animation-delay: 80ms">
       <GitHubActivity username={github.username} client:load />
     </Section>
 
-    <!-- Experiences -->
-    <Section className="border-t-0">
-      <SectionHeader title="Experiences" />
+    <Section className="animate-fade-up" style="animation-delay: 160ms">
+      <SectionHeader title="Experience" />
       <Experiences experiences={experiences} client:load />
     </Section>
 
-    <!-- Projects -->
-    <Section className="border-t-0">
+    <Section className="animate-fade-up" style="animation-delay: 240ms">
       <SectionHeader title="Projects" />
       <Projects projects={projects} client:load />
     </Section>
 
-    <!-- Skills -->
-    <Section className="border-t-0">
-      <SectionHeader title="Skills & Technologies" />
+    <Section className="animate-fade-up" style="animation-delay: 320ms">
+      <SectionHeader title="Skills" />
       <Skills skills={skills} client:load />
     </Section>
 
-    <!-- Newsletter + Quote -->
-    <Section className="border-t-0">
-      <SectionHeader title="Newsletter" />
+    <Section className="animate-fade-up" style="animation-delay: 400ms">
+      <SectionHeader title="Get in touch" />
       <ContactCTA email={profile.email} quote={quote} client:load />
     </Section>
 
-    <section class="dashed-border-section border-t-0 h-56 p-4 sm:p-5">
-      <div class="dot-grid-panel size-full"></div>
-    </section>
-
-    <!-- Scroll to top -->
     <ScrollToTop client:load />
   </main>
 </Layout>

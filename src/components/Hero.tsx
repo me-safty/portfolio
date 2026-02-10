@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./ThemeToggle"
-import { RefreshCcw, Eye, Calendar, Mail } from "lucide-react"
+import { Calendar, Mail } from "lucide-react"
 
 interface HeroProps {
   profile: {
@@ -24,7 +24,7 @@ export function Hero({ profile }: HeroProps) {
       setTimeout(() => {
         setCurrentTitleIndex((prev) => (prev + 1) % profile.titles.length)
         setIsAnimating(false)
-      }, 400)
+      }, 350)
     }, 3000)
 
     return () => clearInterval(interval)
@@ -35,101 +35,80 @@ export function Hero({ profile }: HeroProps) {
     setTimeout(() => {
       setCurrentTitleIndex((prev) => (prev + 1) % profile.titles.length)
       setIsAnimating(false)
-    }, 400)
+    }, 350)
   }
 
   return (
-    <div>
-      {/* Profile section */}
-      <div className="dashed-border-section p-4 sm:p-5 md:p-6 relative">
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
-          {/* Avatar */}
-          <div className="shrink-0">
-            <div className="size-24 rounded-xl overflow-hidden bg-muted border border-border shadow-sm">
-              <img
-                src={profile.avatar}
-                alt={profile.name}
-                className="size-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.style.display = "none"
-                  target.parentElement!.innerHTML = `
-                    <div class="size-full flex items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/20 text-2xl font-semibold text-muted-foreground">
-                      ${profile.name.charAt(0)}
-                    </div>
-                  `
-                }}
-              />
-            </div>
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start">
+        <div className="shrink-0">
+          <div className="size-20 rounded-2xl overflow-hidden bg-muted ring-1 ring-border/50">
+            <img
+              src={profile.avatar}
+              alt={profile.name}
+              className="size-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement
+                target.style.display = "none"
+                target.parentElement!.innerHTML = `
+                  <div class="size-full flex items-center justify-center bg-muted text-xl font-medium text-muted-foreground">
+                    ${profile.name.charAt(0)}
+                  </div>
+                `
+              }}
+            />
           </div>
+        </div>
 
-          {/* Info */}
-          <div className="flex-1 min-w-0 flex flex-col justify-center h-full pt-1">
-            <h1 className="text-[2.15rem] sm:text-[2.35rem] font-bold tracking-tight leading-[1.15] mb-1">
-              {profile.name}
-            </h1>
-
-            {/* Animated title */}
-            <div className="h-6 overflow-hidden pr-12">
-              <p
-                className={`text-muted-foreground font-medium text-base ${
-                  isAnimating ? "title-exit" : "title-enter"
-                }`}
-              >
-                {profile.titles[currentTitleIndex]}
-              </p>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h1 className="text-2xl sm:text-[1.75rem] font-semibold tracking-tight text-foreground">
+                {profile.name}
+              </h1>
+              <div className="h-5 overflow-hidden mt-0.5">
+                <p
+                  className={`text-sm text-muted-foreground ${
+                    isAnimating ? "title-exit" : "title-enter"
+                  }`}
+                >
+                  {profile.titles[currentTitleIndex]}
+                </p>
+              </div>
             </div>
-          </div>
-
-          {/* Top Right Icons */}
-          <div className="absolute top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-1.5">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="size-7 text-muted-foreground hover:text-foreground hover:bg-transparent"
-              onClick={cycleTitle}
-              title="Change title"
-            >
-              <RefreshCcw className="size-3.5" />
-            </Button>
             <ThemeToggle />
           </div>
 
-          {/* Bottom Right View Count */}
-          <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
-            <Eye className="size-3.5 opacity-80" />
-            <span>2.9k</span>
-          </div>
+          <button
+            type="button"
+            onClick={cycleTitle}
+            className="mt-2 text-xs text-muted-foreground/70 hover:text-muted-foreground transition-colors"
+            aria-label="Cycle title"
+          >
+            Change title
+          </button>
         </div>
       </div>
 
-      {/* Bio section */}
-      <div className="dashed-border-section border-t-0 p-4 sm:p-5 md:p-6">
-        <div className="text-foreground/85 text-[1.02rem] leading-8 space-y-3 mb-5">
-          {profile.bio.split("\n\n").map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-        </div>
+      <div className="text-[0.9375rem] leading-[1.7] text-foreground/85 space-y-4">
+        {profile.bio.split("\n\n").map((paragraph, i) => (
+          <p key={i}>{paragraph}</p>
+        ))}
+      </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-2.5">
-          <Button asChild className="gap-2 h-9 rounded-[10px] bg-primary text-primary-foreground hover:bg-primary/90">
-            <a
-              href={profile.calendarLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Calendar className="size-4" />
-              Book an intro call
-            </a>
-          </Button>
-          <Button variant="secondary" asChild className="gap-2 h-9 rounded-[10px] border border-border bg-secondary/70 hover:bg-secondary">
-            <a href={`mailto:${profile.email}`}>
-              <Mail className="size-4" />
-              Send an email
-            </a>
-          </Button>
-        </div>
+      <div className="flex flex-wrap gap-2">
+        <Button asChild size="sm" className="h-9 rounded-lg bg-foreground text-background hover:bg-foreground/90">
+          <a href={profile.calendarLink} target="_blank" rel="noopener noreferrer">
+            <Calendar className="size-3.5" />
+            Book a call
+          </a>
+        </Button>
+        <Button variant="outline" asChild size="sm" className="h-9 rounded-lg border-border/80">
+          <a href={`mailto:${profile.email}`}>
+            <Mail className="size-3.5" />
+            Email
+          </a>
+        </Button>
       </div>
     </div>
   )
