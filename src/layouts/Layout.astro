@@ -32,7 +32,7 @@ const {
       }
     </script>
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen grain-overlay">
     <slot />
   </body>
 </html>
@@ -43,5 +43,9 @@ const {
     margin: 0;
     width: 100%;
     min-height: 100%;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 </style>
