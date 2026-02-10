@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./ThemeToggle"
+import { RefreshCcw, Eye, Calendar, Mail } from "lucide-react"
 
 interface HeroProps {
   profile: {
@@ -29,63 +30,22 @@ export function Hero({ profile }: HeroProps) {
     return () => clearInterval(interval)
   }, [profile.titles.length])
 
+  const cycleTitle = () => {
+    setIsAnimating(true)
+    setTimeout(() => {
+      setCurrentTitleIndex((prev) => (prev + 1) % profile.titles.length)
+      setIsAnimating(false)
+    }, 400)
+  }
+
   return (
     <div>
-      {/* Top dotted box with buttons */}
-      <div className="dashed-border-section border-b-0 dot-grid-bg min-h-[140px] md:min-h-[180px] flex items-center justify-center p-10">
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap gap-3 justify-center">
-          <Button asChild className="gap-2">
-            <a
-              href={profile.calendarLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-4"
-              >
-                <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-                <line x1="16" x2="16" y1="2" y2="6" />
-                <line x1="8" x2="8" y1="2" y2="6" />
-                <line x1="3" x2="21" y1="10" y2="10" />
-              </svg>
-              Book an intro call
-            </a>
-          </Button>
-          <Button variant="outline" asChild className="gap-2">
-            <a href={`mailto:${profile.email}`}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-4"
-              >
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-              Send an email
-            </a>
-          </Button>
-        </div>
-      </div>
-
       {/* Profile section */}
-      <div className="dashed-border-section border-t-0 p-6 md:p-8">
-        <div className="flex flex-col sm:flex-row gap-6 items-start">
+      <div className="dashed-border-section p-6 md:p-8 relative">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
           {/* Avatar */}
           <div className="shrink-0">
-            <div className="size-20 md:size-24 rounded-lg overflow-hidden bg-muted border">
+            <div className="size-28 md:size-32 rounded-xl overflow-hidden bg-muted border border-border shadow-sm">
               <img
                 src={profile.avatar}
                 alt={profile.name}
@@ -104,39 +64,71 @@ export function Hero({ profile }: HeroProps) {
           </div>
 
           {/* Info */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-muted-foreground/50" />
-                  <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-                    {profile.name}
-                  </h1>
-                </div>
+          <div className="flex-1 min-w-0 flex flex-col justify-center h-full pt-2">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+              {profile.name}
+            </h1>
 
-                {/* Animated title */}
-                <div className="h-6 overflow-hidden mt-1">
-                  <p
-                    className={`text-muted-foreground font-medium ${
-                      isAnimating ? "title-exit" : "title-enter"
-                    }`}
-                  >
-                    {profile.titles[currentTitleIndex]}
-                  </p>
-                </div>
-              </div>
-              <ThemeToggle />
+            {/* Animated title */}
+            <div className="h-6 overflow-hidden">
+              <p
+                className={`text-muted-foreground font-medium text-lg ${
+                  isAnimating ? "title-exit" : "title-enter"
+                }`}
+              >
+                {profile.titles[currentTitleIndex]}
+              </p>
             </div>
+          </div>
+
+          {/* Top Right Icons */}
+          <div className="absolute top-6 right-6 flex items-center gap-2">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="size-9 text-muted-foreground hover:text-foreground"
+              onClick={cycleTitle}
+              title="Change title"
+            >
+              <RefreshCcw className="size-4" />
+            </Button>
+            <ThemeToggle />
+          </div>
+
+          {/* Bottom Right View Count */}
+          <div className="absolute bottom-6 right-6 flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+            <Eye className="size-3.5" />
+            <span>2.9k</span>
           </div>
         </div>
       </div>
 
       {/* Bio section */}
-      <div className="dashed-border-section border-t-0 p-6 md:p-8 pt-0">
-        <div className="text-muted-foreground text-sm md:text-base leading-relaxed space-y-3">
+      <div className="dashed-border-section border-t-0 p-6 md:p-8">
+        <div className="text-muted-foreground text-sm md:text-base leading-relaxed space-y-3 mb-6">
           {profile.bio.split("\n\n").map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-3">
+          <Button asChild className="gap-2 bg-foreground text-background hover:bg-foreground/90">
+            <a
+              href={profile.calendarLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Calendar className="size-4" />
+              Book an intro call
+            </a>
+          </Button>
+          <Button variant="secondary" asChild className="gap-2 border border-border/50">
+            <a href={`mailto:${profile.email}`}>
+              <Mail className="size-4" />
+              Send an email
+            </a>
+          </Button>
         </div>
       </div>
     </div>
