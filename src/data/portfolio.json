@@ -13,7 +13,11 @@
     "calendarLink": "https://cal.com/username"
   },
   "socials": [
-    { "name": "GitHub", "url": "https://github.com/safty", "icon": "github" },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/me-safty",
+      "icon": "github"
+    },
     {
       "name": "LinkedIn",
       "url": "https://linkedin.com/in/username",
