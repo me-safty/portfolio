@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Mail, ArrowUpRight } from "lucide-react";
 
 interface ContactCTAProps {
   email: string;
@@ -12,57 +13,54 @@ export function ContactCTA({ email, quote }: ContactCTAProps) {
   return (
     <div>
       {/* CTA Section */}
-      <div className="diagonal-lines-bg px-6 py-12 text-center border-b border-dashed border-border">
-        <h2 className="text-xl font-semibold mb-2">Let's work together</h2>
-        <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-          I'm currently available for freelance work and new opportunities. Feel free to reach out!
+      <div className="relative noise-section rounded-2xl border border-border/60 bg-card/50 px-6 sm:px-10 py-14 sm:py-16 text-center overflow-hidden">
+        {/* Decorative gradient blob */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
+        
+        <p className="text-sm font-mono text-accent tracking-widest uppercase mb-4 relative z-10">
+          Let's collaborate
         </p>
-        <Button asChild size="lg" className="gap-2">
-          <a href={`mailto:${email}`}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4"
-            >
-              <rect width="20" height="16" x="2" y="4" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-            Send an email
-          </a>
-        </Button>
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-tight mb-4 relative z-10">
+          Have a project in mind?
+        </h2>
+        <p className="text-muted-foreground text-lg mb-8 max-w-md mx-auto relative z-10 leading-relaxed">
+          I'm currently available for freelance work and new opportunities.
+        </p>
+        <div className="flex flex-wrap justify-center gap-3 relative z-10">
+          <Button
+            asChild
+            className="gap-2.5 h-12 rounded-xl bg-accent text-accent-foreground hover:bg-accent/90 px-7 text-base font-medium shadow-lg shadow-accent/20 transition-all duration-300"
+          >
+            <a href={`mailto:${email}`}>
+              <Mail className="size-4" />
+              Send an email
+              <ArrowUpRight className="size-3.5 opacity-60" />
+            </a>
+          </Button>
+        </div>
       </div>
 
       {/* Quote Section */}
-      <div className="dot-grid-bg px-6 py-16 text-center">
-        {/* Large quote marks */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="size-12 text-muted-foreground/20 mx-auto mb-6"
-        >
-          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-        </svg>
+      <div className="relative py-16 sm:py-20 text-center">
+        {/* Large decorative quote mark */}
+        <div className="font-display text-[8rem] sm:text-[10rem] leading-none text-border/40 absolute top-4 left-1/2 -translate-x-1/2 select-none pointer-events-none">
+          "
+        </div>
 
         {/* Quote text */}
-        <blockquote className="max-w-2xl mx-auto mb-6">
-          <p className="text-xl md:text-2xl font-medium italic leading-relaxed">
+        <blockquote className="max-w-xl mx-auto mb-6 relative z-10 pt-8">
+          <p className="font-display text-xl sm:text-2xl md:text-[1.7rem] italic leading-relaxed text-foreground/90">
             "{quote.text}"
           </p>
         </blockquote>
 
         {/* Author attribution */}
-        <div className="flex items-center justify-center gap-4">
-          <div className="h-px w-8 bg-border" />
-          <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+        <div className="flex items-center justify-center gap-4 relative z-10">
+          <div className="h-px w-10 bg-accent/50" />
+          <span className="text-sm text-muted-foreground font-mono tracking-wider uppercase">
             {quote.author}
           </span>
-          <div className="h-px w-8 bg-border" />
+          <div className="h-px w-10 bg-accent/50" />
         </div>
       </div>
     </div>

@@ -35,7 +35,6 @@ function generateMockData(): ContributionDay[] {
     const date = new Date(startDate);
     date.setDate(date.getDate() + i);
 
-    // Random contribution pattern
     const random = Math.random();
     let count = 0;
     let level = 0;
@@ -58,12 +57,10 @@ function generateMockData(): ContributionDay[] {
   return days;
 }
 
-// Group contributions by week
 function groupByWeeks(days: ContributionDay[]): ContributionDay[][] {
   const weeks: ContributionDay[][] = [];
   let currentWeek: ContributionDay[] = [];
 
-  // Pad start with empty days to align to Sunday
   if (days.length > 0) {
     const firstDay = new Date(days[0].date).getDay();
     for (let i = 0; i < firstDay; i++) {
@@ -79,7 +76,6 @@ function groupByWeeks(days: ContributionDay[]): ContributionDay[][] {
     }
   });
 
-  // Push remaining days
   if (currentWeek.length > 0) {
     weeks.push(currentWeek);
   }
@@ -87,7 +83,6 @@ function groupByWeeks(days: ContributionDay[]): ContributionDay[][] {
   return weeks;
 }
 
-// Get month labels
 function getMonthLabels(weeks: ContributionDay[][]): { month: string; index: number }[] {
   const labels: { month: string; index: number }[] = [];
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -116,8 +111,6 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
   useEffect(() => {
     async function fetchContributions() {
       try {
-        // Try to fetch from GitHub's contribution calendar
-        // Since GitHub's GraphQL API requires auth, we'll use a public proxy or fallback to mock
         const response = await fetch(
           `https://github-contributions-api.jogruber.de/v4/${username}?y=last`
         );
@@ -129,11 +122,7 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
 
           if (data.contributions) {
             data.contributions.forEach((day: { date: string; count: number; level: number }) => {
-              days.push({
-                date: day.date,
-                count: day.count,
-                level: day.level,
-              });
+              days.push({ date: day.date, count: day.count, level: day.level });
               total += day.count;
             });
           }
@@ -148,7 +137,6 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
           throw new Error("API failed");
         }
       } catch {
-        // Fallback to mock data
         const mockData = generateMockData();
         setContributions(mockData);
         setTotalContributions(mockData.reduce((sum, d) => sum + d.count, 0));
@@ -164,17 +152,18 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
   const monthLabels = getMonthLabels(weeks);
   const columnStep = 13;
 
+  // Amber-tinted contribution colors
   const levelColors = [
     "bg-muted",
-    "bg-gray-300 dark:bg-gray-700",
-    "bg-gray-400 dark:bg-gray-500",
-    "bg-gray-500 dark:bg-gray-400",
-    "bg-gray-700 dark:bg-gray-200",
+    "bg-[#D4A853]/20",
+    "bg-[#D4A853]/40",
+    "bg-[#D4A853]/65",
+    "bg-[#D4A853]",
   ];
 
   if (loading) {
     return (
-      <div className="px-4 sm:px-5 md:px-6 py-6">
+      <div className="py-4">
         <div className="animate-pulse">
           <div className="h-4 bg-muted rounded w-24 mb-4" />
           <div className="h-20 bg-muted rounded" />
@@ -184,7 +173,7 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
   }
 
   return (
-    <div className="px-4 sm:px-5 md:px-6 py-4">
+    <div className="py-2">
       {/* Month labels */}
       <div className="overflow-x-auto">
         <div className="min-w-[690px]">
@@ -192,10 +181,8 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
             {monthLabels.map(({ month, index }) => (
               <span
                 key={`${month}-${index}`}
-                className="absolute text-sm text-muted-foreground"
-                style={{
-                  left: `${index * columnStep}px`,
-                }}
+                className="absolute text-xs text-muted-foreground font-mono"
+                style={{ left: `${index * columnStep}px` }}
               >
                 {month}
               </span>
@@ -208,7 +195,7 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
               {weeks.map((week, weekIndex) => (
                 <div key={weekIndex} className="flex flex-col gap-[3px]">
                   {week.map((day, dayIndex) => {
-                    const cellClass = `size-[10px] rounded-[2px] contribution-cell ${
+                    const cellClass = `size-[10px] rounded-[2.5px] contribution-cell ${
                       day.level === -1 ? "bg-transparent" : levelColors[day.level]
                     }`;
                     const cellStyle = {
@@ -217,11 +204,7 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
 
                     if (!day.date) {
                       return (
-                        <div
-                          key={`${weekIndex}-${dayIndex}`}
-                          className={cellClass}
-                          style={cellStyle}
-                        />
+                        <div key={`${weekIndex}-${dayIndex}`} className={cellClass} style={cellStyle} />
                       );
                     }
 
@@ -230,12 +213,12 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
                         <TooltipTrigger asChild>
                           <button
                             type="button"
-                            className={`${cellClass} cursor-default`}
+                            className={`${cellClass} cursor-default hover:ring-1 hover:ring-accent/40 transition-shadow`}
                             style={cellStyle}
                             aria-label={`${day.count} commits on ${day.date}`}
                           />
                         </TooltipTrigger>
-                        <TooltipContent className="text-[11px]">
+                        <TooltipContent className="text-[11px] font-mono">
                           <p>{day.count} {day.count === 1 ? "commit" : "commits"}</p>
                           <p className="text-muted-foreground">{formatContributionDate(day.date)}</p>
                         </TooltipContent>
@@ -250,15 +233,12 @@ export function GitHubActivity({ username }: GitHubActivityProps) {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between mt-3 text-sm text-muted-foreground">
+      <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground font-mono">
         <span>{totalContributions.toLocaleString()} activities in {year}</span>
         <div className="flex items-center gap-1.5">
           <span>Less</span>
           {levelColors.map((color, i) => (
-            <div
-              key={i}
-              className={`size-[10px] rounded-[2px] ${color}`}
-            />
+            <div key={i} className={`size-[10px] rounded-[2.5px] ${color}`} />
           ))}
           <span>More</span>
         </div>
