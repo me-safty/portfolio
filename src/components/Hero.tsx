@@ -65,7 +65,7 @@ export function Hero({ profile }: HeroProps) {
 
           {/* Info */}
           <div className="flex-1 min-w-0 flex flex-col justify-center h-full pt-1">
-            <h1 className="text-[2.15rem] sm:text-[2.35rem] font-bold tracking-tight leading-[1.15] mb-1">
+            <h1 className="text-[2.15rem]  sm:text-[2.35rem] font-bold tracking-tight leading-[1.15] mb-1">
               {profile.name}
             </h1>
 
