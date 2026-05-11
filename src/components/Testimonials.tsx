@@ -12,7 +12,7 @@ interface TestimonialsProps {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="p-6 border-r border-border/60 last:border-r-0 flex flex-col">
+    <div className="flex flex-col border-b border-border/60 p-6 last:border-b-0 md:border-r md:[&:nth-child(3n)]:border-r-0 md:[&:nth-last-child(-n+3)]:border-b-0">
       {/* Quote icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"

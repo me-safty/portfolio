@@ -3,9 +3,9 @@
     "name": "Mohamed Safty",
     "titles": [
       "Top Rated Freelancer",
-      "Full Stack Engineer",
-      "Mobile Developer Engineer",
-      "Software Engineer"
+      "Frontend Engineer",
+      "React Expert",
+      "Next.js Expert"
     ],
     "avatar": "/image.jpeg",
     "bio": "Hey, I'm a full stack developer who loves building clean, modern websites and apps where design, functionality, and even the smallest details matter, with a focus on making products that are both practical and visually satisfying.\n\nTech stack isn't my concern, I'm flexible with whatever the project needs, though I prefer modern frameworks and tools. I'm always open for new opportunities to learn and grow.",
@@ -25,7 +25,7 @@
     },
     {
       "name": "Upwork",
-      "url": "https://upwork.com/freelancers/username",
+      "url": "https://www.upwork.com/freelancers/~011c88da58a37793f4?mp_source=share",
       "icon": "upwork"
     },
     {
@@ -39,6 +39,33 @@
       "icon": "medium"
     }
   ],
+  "upwork": {
+    "url": "https://www.upwork.com/freelancers/~011c88da58a37793f4?mp_source=share",
+    "headline": "Frontend Engineer | React Expert | Next.js Expert",
+    "rate": "$23/hr",
+    "location": "Cairo, Egypt",
+    "badges": ["Top Rated", "100% Job Success", "Verified", "Available Now"],
+    "stats": [
+      { "label": "Rating", "value": "5.0", "detail": "7 reviews" },
+      { "label": "Total jobs", "value": "11", "detail": "Upwork history" },
+      { "label": "Total hours", "value": "1.3K", "detail": "tracked hours" },
+      { "label": "Client feedback", "value": "6", "detail": "public reviews" }
+    ],
+    "summary": "Top Rated frontend engineer focused on React, Next.js, TypeScript, clean UI implementation, daily progress updates, and real-time delivery visibility through CI/CD.",
+    "recentJobs": [
+      "QR Code task",
+      "Transport: CRUD operation with React for truck and trailers",
+      "Implement Chart of accounts frontend with React",
+      "Software development with Monorepo with TypeScript, React and Node.js",
+      "Store management web application frontend",
+      "React components in TypeScript from XD design",
+      "Responsive CSS/JavaScript click-drag rotation project"
+    ],
+    "portfolioProjects": [
+      "Blog Website built with React and Next.js",
+      "Landing page"
+    ]
+  },
   "experiences": [
     {
       "id": "exp-1",
@@ -99,42 +126,42 @@
   "projects": [
     {
       "id": "proj-1",
-      "name": "Project Alpha",
+      "name": "Blog Website",
       "image": "/image.jpeg",
-      "label": "Featured",
-      "description": "A social platform where developers share projects, ideas, and grow together.",
+      "label": "Upwork Portfolio",
+      "description": "Blog website built with React and Next.js, covering frontend structure, styling, and production-ready UI implementation.",
       "status": "Live",
-      "url": "https://project-alpha.com",
+      "url": "https://www.upwork.com/freelancers/~011c88da58a37793f4?mp_source=share",
       "featured": true
     },
     {
       "id": "proj-2",
-      "name": "Project Beta",
+      "name": "Transport CRUD Dashboard",
       "image": "/image.jpeg",
-      "label": "Home Feed",
-      "description": "Record studio-quality remote audio and video, locally captured without quality loss.",
-      "status": "Building",
-      "url": "https://project-beta.com",
+      "label": "Client Work",
+      "description": "React CRUD interface for managing trucks and trailers, delivered with JavaScript, CSS, HTML5, and web development workflows.",
+      "status": "Live",
+      "url": "https://www.upwork.com/freelancers/~011c88da58a37793f4?mp_source=share",
       "featured": true
     },
     {
       "id": "proj-3",
-      "name": "Project Gamma",
+      "name": "Chart of Accounts Frontend",
       "image": "/image.jpeg",
-      "label": "News Screen",
-      "description": "A news website presenting cases through a clean, newspaper-style interface.",
+      "label": "Client Work",
+      "description": "React frontend for accounting workflows, using JavaScript, HTML, CSS, Node.js, and detailed UI implementation.",
       "status": "Live",
-      "url": "https://project-gamma.com",
+      "url": "https://www.upwork.com/freelancers/~011c88da58a37793f4?mp_source=share",
       "featured": false
     },
     {
       "id": "proj-4",
-      "name": "Project Delta",
+      "name": "TypeScript Monorepo App",
       "image": "/image.jpeg",
-      "label": "Coming Soon",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, itaque.",
-      "status": "Building",
-      "url": "#",
+      "label": "Long-term Work",
+      "description": "Large codebase work with React, Node.js, TypeScript, MongoDB, and pnpm monorepo tooling.",
+      "status": "Live",
+      "url": "https://www.upwork.com/freelancers/~011c88da58a37793f4?mp_source=share",
       "featured": false
     }
   ],
@@ -172,24 +199,45 @@
   "testimonials": [
     {
       "id": "test-1",
-      "text": "Working with them was an absolute pleasure. They delivered high-quality work on time and exceeded our expectations. Highly recommended for any development project!",
-      "author": "John Doe",
-      "role": "CTO at TechCorp",
-      "avatar": "/testimonials/john.jpg"
+      "text": "He is a great freelancer. He delivered the work as expected in time.",
+      "author": "Upwork Client",
+      "role": "QR Code task",
+      "avatar": "/image.jpeg"
     },
     {
       "id": "test-2",
-      "text": "Exceptional developer with great communication skills. They understood our requirements perfectly and delivered a stunning product.",
-      "author": "Jane Smith",
-      "role": "Product Manager at StartupXYZ",
-      "avatar": "/testimonials/jane.jpg"
+      "text": "Mohamed demonstrated exceptional skill and professionalism in developing the Transport CRUD Operation with React project.",
+      "author": "Upwork Client",
+      "role": "Transport CRUD with React",
+      "avatar": "/image.jpeg"
     },
     {
       "id": "test-3",
-      "text": "Professional, skilled, and dedicated. They went above and beyond to ensure our project was successful. Would definitely work with them again!",
-      "author": "Mike Johnson",
-      "role": "Founder at AppStudio",
-      "avatar": "/testimonials/mike.jpg"
+      "text": "Working with Mohamed was a fantastic experience. He delivered exceptional results, demonstrating professionalism and expertise.",
+      "author": "Upwork Client",
+      "role": "Chart of accounts frontend",
+      "avatar": "/image.jpeg"
+    },
+    {
+      "id": "test-4",
+      "text": "It was a pleasure to work with him. He always took responsibility and knew how to read and solve issues in a fast and efficient way.",
+      "author": "Mohamed T.",
+      "role": "TypeScript, React and Node.js monorepo",
+      "avatar": "/image.jpeg"
+    },
+    {
+      "id": "test-5",
+      "text": "He is a humble and responsible individual who produces clean and impressive work.",
+      "author": "Shri Gowtham M.",
+      "role": "Store management web application",
+      "avatar": "/image.jpeg"
+    },
+    {
+      "id": "test-6",
+      "text": "Mohamed is professional and great to work with. Excellent communication and the project was delivered quickly to a high standard.",
+      "author": "Jake F.",
+      "role": "Responsive CSS/JavaScript project",
+      "avatar": "/image.jpeg"
     }
   ],
   "quote": {
