@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-interface SectionProps {
+interface SectionProps extends ComponentPropsWithoutRef<"section"> {
   children: ReactNode;
   className?: string;
   variant?: "default" | "dot-grid" | "diagonal";
@@ -13,6 +13,7 @@ export function Section({
   className,
   variant = "default",
   noBorder = false,
+  ...props
 }: SectionProps) {
   const bgVariants = {
     default: "",
@@ -22,9 +23,10 @@ export function Section({
 
   return (
     <section
+      {...props}
       className={cn(
-        "relative",
-        !noBorder && "dashed-border-section",
+        "relative overflow-hidden",
+        !noBorder && "frame-section",
         bgVariants[variant],
         className
       )}
@@ -41,8 +43,16 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ title, className }: SectionHeaderProps) {
   return (
-    <div className={cn("dashed-border-section border-t-0 border-x-0 px-4 sm:px-5 md:px-6 py-3.5", className)}>
-      <h2 className="text-[1.95rem] font-semibold tracking-tight leading-none">{title}</h2>
+    <div
+      className={cn(
+        "flex items-center gap-3 border-b border-border/70 px-5 py-4 sm:px-6 md:px-7",
+        className
+      )}
+    >
+      <h2 className="text-xs font-semibold uppercase leading-none tracking-[0.2em] text-muted-foreground">
+        {title}
+      </h2>
+      <div className="h-px flex-1 bg-border/55" aria-hidden="true" />
     </div>
   );
 }

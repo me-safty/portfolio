@@ -50,24 +50,24 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: #f2f2f4;
-  --foreground: #35363c;
-  --card: #f8f8f9;
-  --card-foreground: #35363c;
+  --radius: 0.5rem;
+  --background: #f7f5f0;
+  --foreground: #202124;
+  --card: #fffdf8;
+  --card-foreground: #202124;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #4b4c59;
-  --primary-foreground: #f6f6f7;
-  --secondary: #ececef;
-  --secondary-foreground: #4a4b53;
-  --muted: #ececef;
-  --muted-foreground: #7a7b87;
-  --accent: #e7e7ea;
-  --accent-foreground: #2f3036;
+  --primary: #1d1d1f;
+  --primary-foreground: #fffdf8;
+  --secondary: #ece8df;
+  --secondary-foreground: #2d2d2f;
+  --muted: #eee9df;
+  --muted-foreground: #716d66;
+  --accent: #d7f36b;
+  --accent-foreground: #1d1d1f;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #d1d2d8;
-  --input: #d5d6dc;
+  --border: #ded8cc;
+  --input: #d7d0c2;
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -85,23 +85,23 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
+  --background: #111214;
+  --foreground: #f2efe8;
+  --card: #191a1d;
+  --card-foreground: #f2efe8;
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --primary: #f2efe8;
+  --primary-foreground: #111214;
+  --secondary: #25262a;
+  --secondary-foreground: #f2efe8;
+  --muted: #242529;
+  --muted-foreground: #aaa49a;
+  --accent: #d7f36b;
+  --accent-foreground: #111214;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --border: #333338;
+  --input: #3a3a40;
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
@@ -124,43 +124,98 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    background:
+      radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 22%, transparent) 0, transparent 26rem),
+      linear-gradient(180deg, color-mix(in srgb, var(--card) 42%, transparent), transparent 26rem),
+      var(--background);
   }
 }
 
 /* Portfolio-specific styles */
+.portfolio-shell {
+  position: relative;
+}
+
+.portfolio-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--foreground) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--foreground) 4%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 68%);
+}
+
 .dot-grid-bg {
   background-image: radial-gradient(
     circle,
-    color-mix(in srgb, var(--border) 70%, transparent) 1px,
-    transparent 1.1px
+    color-mix(in srgb, var(--foreground) 18%, transparent) 0.8px,
+    transparent 0.9px
   );
-  background-size: 7px 7px;
+  background-size: 16px 16px;
 }
 
-.dashed-border-section {
+.frame-section {
   position: relative;
-  border: 1px dashed color-mix(in srgb, var(--border) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+}
+
+.frame-section.border-t-0 {
+  margin-top: -1px;
+}
+
+.edge-section {
+  background: color-mix(in srgb, var(--card) 78%, transparent);
+}
+
+.edge-section .dot-grid-panel {
+  border: 0;
+  box-shadow: none;
 }
 
 .dot-grid-panel {
   background-image: radial-gradient(
     circle,
-    color-mix(in srgb, var(--border) 66%, transparent) 1px,
-    transparent 1.1px
+    color-mix(in srgb, var(--muted-foreground) 24%, transparent) 0.8px,
+    transparent 0.9px
   );
-  background-size: 7px 7px;
-  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
-  border-radius: 2px;
+  background-size: 14px 14px;
+  border: 1px solid color-mix(in srgb, var(--border) 46%, transparent);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--card) 72%, transparent);
+}
+
+.chrome-dot-box {
+  min-height: 8.75rem;
+}
+
+@media (max-width: 520px) {
+  .chrome-dot-box {
+    min-height: 7rem;
+  }
 }
 
 .diagonal-lines-bg {
   background-image: repeating-linear-gradient(
     -45deg,
     transparent,
-    transparent 4px,
-    color-mix(in srgb, var(--border) 65%, transparent) 4px,
-    color-mix(in srgb, var(--border) 65%, transparent) 5px
+    transparent 8px,
+    color-mix(in srgb, var(--foreground) 10%, transparent) 8px,
+    color-mix(in srgb, var(--foreground) 10%, transparent) 9px
   );
+}
+
+.focus-lift {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.focus-lift:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--foreground) 18%, var(--border));
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--foreground) 8%, transparent);
 }
 
 /* Title rotation animation */

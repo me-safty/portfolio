@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./ThemeToggle"
-import { RefreshCcw, Eye, Calendar, Mail } from "lucide-react"
+import { Calendar, Eye, Mail, RefreshCcw } from "lucide-react"
 
 interface HeroProps {
   profile: {
@@ -41,11 +41,11 @@ export function Hero({ profile }: HeroProps) {
   return (
     <div>
       {/* Profile section */}
-      <div className="dashed-border-section p-4 sm:p-5 md:p-6 relative">
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
+      <div className="frame-section relative p-5 sm:p-6 md:p-7">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
           {/* Avatar */}
           <div className="shrink-0">
-            <div className="size-24 rounded-xl overflow-hidden bg-muted border border-border shadow-sm">
+            <div className="size-24 overflow-hidden rounded-2xl border border-border bg-muted shadow-sm ring-4 ring-background sm:size-28">
               <img
                 src={profile.avatar}
                 alt={profile.name}
@@ -64,15 +64,19 @@ export function Hero({ profile }: HeroProps) {
           </div>
 
           {/* Info */}
-          <div className="flex-1 min-w-0 flex flex-col justify-center h-full pt-1">
-            <h1 className="text-[2.15rem] sm:text-[2.35rem] font-bold tracking-tight leading-[1.15] mb-1">
+          <div className="flex min-w-0 flex-1 flex-col justify-center pt-1 pr-12">
+            <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+              <span className="size-1.5 rounded-full bg-accent" />
+              Portfolio
+            </div>
+            <h1 className="mb-2 text-[2.55rem] font-semibold leading-[0.98] tracking-tight text-foreground sm:text-[3.2rem] md:text-[3.65rem]">
               {profile.name}
             </h1>
 
             {/* Animated title */}
-            <div className="h-6 overflow-hidden pr-12">
+            <div className="h-8 overflow-hidden">
               <p
-                className={`text-muted-foreground font-medium text-base ${
+                className={`text-base font-medium text-muted-foreground sm:text-lg ${
                   isAnimating ? "title-exit" : "title-enter"
                 }`}
               >
@@ -82,30 +86,30 @@ export function Hero({ profile }: HeroProps) {
           </div>
 
           {/* Top Right Icons */}
-          <div className="absolute top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-1.5">
+          <div className="absolute right-4 top-4 flex items-center gap-1.5 sm:right-5 sm:top-5">
             <Button 
               variant="ghost" 
               size="icon" 
-              className="size-7 text-muted-foreground hover:text-foreground hover:bg-transparent"
+              className="size-8 rounded-full text-muted-foreground hover:bg-secondary hover:text-foreground"
               onClick={cycleTitle}
               title="Change title"
             >
-              <RefreshCcw className="size-3.5" />
+              <RefreshCcw className="size-4" />
             </Button>
             <ThemeToggle />
           </div>
 
           {/* Bottom Right View Count */}
-          <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
-            <Eye className="size-3.5 opacity-80" />
+          <div className="absolute bottom-5 right-5 hidden items-center gap-1.5 rounded-full border border-border bg-card/80 px-2.5 py-1 text-sm font-medium text-muted-foreground sm:flex">
+            <Eye className="size-3.5 opacity-80" aria-hidden="true" />
             <span>2.9k</span>
           </div>
         </div>
       </div>
 
       {/* Bio section */}
-      <div className="dashed-border-section border-t-0 p-4 sm:p-5 md:p-6">
-        <div className="text-foreground/85 text-[1.02rem] leading-8 space-y-3 mb-5">
+      <div className="frame-section border-t-0 p-5 sm:p-6 md:p-7">
+        <div className="mb-6 max-w-2xl space-y-3 text-[1.02rem] leading-8 text-foreground/78">
           {profile.bio.split("\n\n").map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
@@ -113,7 +117,7 @@ export function Hero({ profile }: HeroProps) {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-2.5">
-          <Button asChild className="gap-2 h-9 rounded-[10px] bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button asChild className="h-10 gap-2 rounded-full bg-primary px-5 text-primary-foreground hover:bg-primary/90">
             <a
               href={profile.calendarLink}
               target="_blank"
@@ -123,7 +127,7 @@ export function Hero({ profile }: HeroProps) {
               Book an intro call
             </a>
           </Button>
-          <Button variant="secondary" asChild className="gap-2 h-9 rounded-[10px] border border-border bg-secondary/70 hover:bg-secondary">
+          <Button variant="secondary" asChild className="h-10 gap-2 rounded-full border border-border bg-secondary/70 px-5 hover:bg-secondary">
             <a href={`mailto:${profile.email}`}>
               <Mail className="size-4" />
               Send an email

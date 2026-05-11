@@ -6,6 +6,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { ChevronDown, ExternalLink } from "lucide-react";
 
 interface Experience {
   id: string;
@@ -35,11 +36,11 @@ function ExperienceCard({
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div className="dashed-border-section border-t-0 border-x-0 last:border-b-0">
+      <div className="border-b border-border/70 last:border-b-0">
         <CollapsibleTrigger asChild>
-          <button className="w-full px-4 sm:px-5 md:px-6 py-4 flex items-start gap-3 text-left hover:bg-muted/40 transition-colors">
+          <button className="flex w-full items-start gap-3 px-5 py-4 text-left transition-colors hover:bg-muted/45 sm:px-6 md:px-7">
             {/* Company logo */}
-            <div className="size-12 rounded-xl bg-muted border flex items-center justify-center shrink-0 overflow-hidden">
+            <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border bg-muted">
               <img
                 src={experience.logo}
                 alt={experience.company}
@@ -57,54 +58,46 @@ function ExperienceCard({
             </div>
 
             {/* Info */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-2xl font-semibold leading-none">{experience.company}</span>
-                <Badge variant="outline" className="text-sm font-normal rounded-[8px] px-2 py-0.5">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xl font-semibold leading-tight tracking-tight sm:text-2xl">{experience.company}</span>
+                <Badge variant="outline" className="rounded-full px-2 py-0.5 text-xs font-normal">
                   {experience.type}
                 </Badge>
               </div>
-              <p className="text-[1.05rem] text-muted-foreground mt-1">{experience.role}</p>
+              <p className="mt-1 text-[0.98rem] text-muted-foreground">{experience.role}</p>
             </div>
 
             {/* Date and location */}
             <div className="text-right shrink-0 hidden sm:block">
-              <p className="text-[1.02rem] font-medium">
+              <p className="text-sm font-medium">
                 {experience.startDate} - {experience.endDate}
               </p>
-              <p className="text-[1.02rem] text-muted-foreground mt-0.5">{experience.location}</p>
+              <p className="mt-0.5 text-sm text-muted-foreground">{experience.location}</p>
             </div>
 
             {/* Expand icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <ChevronDown
               className={`size-5 shrink-0 text-muted-foreground transition-transform duration-200 ${
                 isOpen ? "rotate-180" : ""
               }`}
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
+              aria-hidden="true"
+            />
           </button>
         </CollapsibleTrigger>
 
         <CollapsibleContent>
-          <div className="px-4 sm:px-5 md:px-6 pb-4 pl-[4.25rem] sm:pl-[4.75rem]">
+          <div className="pb-5 pl-[4.25rem] pr-5 sm:pl-[5rem] sm:pr-6 md:pr-7">
             {/* Mobile date */}
-            <p className="text-[1.02rem] text-muted-foreground mb-3 sm:hidden">
+            <p className="mb-3 text-sm text-muted-foreground sm:hidden">
               {experience.startDate} - {experience.endDate} · {experience.location}
             </p>
 
             {/* Description */}
-            <ul className="space-y-2.5 mb-4">
+            <ul className="mb-4 space-y-2.5">
               {experience.description.map((item, i) => (
-                <li key={i} className="flex gap-2 text-[1.04rem] leading-8 text-foreground/85">
-                  <span className="text-foreground mt-1.5">•</span>
+                <li key={i} className="flex gap-2 text-[0.98rem] leading-7 text-foreground/78">
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -113,7 +106,7 @@ function ExperienceCard({
             {/* Technologies */}
             <div className="flex flex-wrap gap-1.5">
               {experience.technologies.map((tech) => (
-                <Badge key={tech} variant="outline" className="text-sm font-normal rounded-[8px] border-border bg-secondary/60">
+                <Badge key={tech} variant="outline" className="rounded-full border-border bg-secondary/60 text-xs font-normal">
                   {tech}
                 </Badge>
               ))}
@@ -140,22 +133,10 @@ export function Experiences({ experiences }: ExperiencesProps) {
           <Button
             variant="default"
             onClick={() => setShowAll(!showAll)}
-            className="h-10 rounded-[12px] border border-border/70 px-5 text-base"
+            className="h-10 rounded-full border border-border/70 px-5 text-sm"
           >
             {showAll ? "Show Less" : "View All"}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4"
-            >
-              <path d="M7 7h10v10" />
-              <path d="M7 17 17 7" />
-            </svg>
+            <ExternalLink className="size-4" aria-hidden="true" />
           </Button>
         </div>
       )}

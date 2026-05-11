@@ -49,8 +49,8 @@ export function SocialLinks({ socials }: SocialLinksProps) {
   const moreSocials = socials.slice(6);
 
   return (
-    <div className="px-4 sm:px-5 md:px-6 pb-5">
-      <p className="text-sm text-muted-foreground mb-3.5">
+    <div className="px-5 pb-5 sm:px-6 md:px-7">
+      <p className="mb-3.5 text-sm text-muted-foreground">
         Here are my <span className="font-medium text-foreground">socials</span>
       </p>
       <div className="flex flex-wrap gap-1.5">
@@ -60,7 +60,7 @@ export function SocialLinks({ socials }: SocialLinksProps) {
             variant="secondary"
             size="sm"
             asChild
-            className="gap-1.5 h-8 rounded-[8px] px-2.5 border border-border bg-secondary/70 hover:bg-secondary"
+            className="h-8 gap-1.5 rounded-full border border-border bg-secondary/70 px-3 hover:bg-secondary"
           >
             <a href={social.url} target="_blank" rel="noopener noreferrer">
               {socialIcons[social.icon] || (
@@ -86,7 +86,7 @@ export function SocialLinks({ socials }: SocialLinksProps) {
           <Button
             variant="secondary"
             size="sm"
-            className="gap-1.5 h-8 rounded-[8px] px-2.5 border border-border bg-secondary/70 hover:bg-secondary"
+            className="h-8 gap-1.5 rounded-full border border-border bg-secondary/70 px-3 hover:bg-secondary"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

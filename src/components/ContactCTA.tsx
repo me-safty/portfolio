@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Mail, Quote } from "lucide-react";
 
 interface ContactCTAProps {
   email: string;
@@ -12,46 +13,27 @@ export function ContactCTA({ email, quote }: ContactCTAProps) {
   return (
     <div>
       {/* CTA Section */}
-      <div className="diagonal-lines-bg px-6 py-12 text-center border-b border-dashed border-border">
-        <h2 className="text-xl font-semibold mb-2">Let's work together</h2>
-        <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+      <div className="diagonal-lines-bg border-b border-border/70 px-6 py-12 text-center">
+        <h2 className="mb-2 text-2xl font-semibold tracking-tight">Let's work together</h2>
+        <p className="mx-auto mb-6 max-w-md text-[0.98rem] leading-7 text-muted-foreground">
           I'm currently available for freelance work and new opportunities. Feel free to reach out!
         </p>
-        <Button asChild size="lg" className="gap-2">
+        <Button asChild size="lg" className="h-11 gap-2 rounded-full px-6">
           <a href={`mailto:${email}`}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4"
-            >
-              <rect width="20" height="16" x="2" y="4" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
+            <Mail className="size-4" aria-hidden="true" />
             Send an email
           </a>
         </Button>
       </div>
 
       {/* Quote Section */}
-      <div className="dot-grid-bg px-6 py-16 text-center">
+      <div className="dot-grid-bg px-6 py-14 text-center sm:py-16">
         {/* Large quote marks */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="size-12 text-muted-foreground/20 mx-auto mb-6"
-        >
-          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-        </svg>
+        <Quote className="mx-auto mb-6 size-10 text-muted-foreground/25" aria-hidden="true" />
 
         {/* Quote text */}
-        <blockquote className="max-w-2xl mx-auto mb-6">
-          <p className="text-xl md:text-2xl font-medium italic leading-relaxed">
+        <blockquote className="mx-auto mb-6 max-w-2xl">
+          <p className="text-xl font-medium italic leading-relaxed md:text-2xl">
             "{quote.text}"
           </p>
         </blockquote>
@@ -59,7 +41,7 @@ export function ContactCTA({ email, quote }: ContactCTAProps) {
         {/* Author attribution */}
         <div className="flex items-center justify-center gap-4">
           <div className="h-px w-8 bg-border" />
-          <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+          <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
             {quote.author}
           </span>
           <div className="h-px w-8 bg-border" />

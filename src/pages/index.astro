@@ -15,15 +15,15 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
 ---
 
 <Layout title={`${profile.name} - Portfolio`} description={profile.bio.split('\n')[0]}>
-  <main class="max-w-[760px] mx-auto py-8 px-4 md:px-6">
-    <section class="dashed-border-section h-56 border-b-0 p-4 sm:p-5">
-      <div class="dot-grid-panel size-full"></div>
-    </section>
+  <main id="top" class="portfolio-shell mx-auto max-w-[860px] px-4 py-6 sm:px-6 sm:py-10">
+    <header class="frame-section overflow-hidden rounded-t-2xl p-4 sm:p-5">
+      <div class="dot-grid-panel chrome-dot-box" aria-hidden="true"></div>
+    </header>
 
     <!-- Hero Section -->
     <div class="mb-0">
       <Hero profile={profile} client:load />
-      <div class="dashed-border-section border-t-0">
+      <div class="frame-section border-t-0">
         <SocialLinks socials={socials} client:load />
       </div>
     </div>
@@ -34,32 +34,28 @@ const { profile, socials, experiences, projects, skills, quote, github } = portf
     </Section>
 
     <!-- Experiences -->
-    <Section className="border-t-0">
+    <Section className="border-t-0" id="experience">
       <SectionHeader title="Experiences" />
       <Experiences experiences={experiences} client:load />
     </Section>
 
     <!-- Projects -->
-    <Section className="border-t-0">
+    <Section className="border-t-0" id="projects">
       <SectionHeader title="Projects" />
       <Projects projects={projects} client:load />
     </Section>
 
     <!-- Skills -->
-    <Section className="border-t-0">
+    <Section className="border-t-0" id="skills">
       <SectionHeader title="Skills & Technologies" />
       <Skills skills={skills} client:load />
     </Section>
 
     <!-- Newsletter + Quote -->
-    <Section className="border-t-0">
+    <Section className="border-t-0 rounded-b-2xl" id="contact">
       <SectionHeader title="Newsletter" />
       <ContactCTA email={profile.email} quote={quote} client:load />
     </Section>
-
-    <section class="dashed-border-section border-t-0 h-56 p-4 sm:p-5">
-      <div class="dot-grid-panel size-full"></div>
-    </section>
 
     <!-- Scroll to top -->
     <ScrollToTop client:load />
